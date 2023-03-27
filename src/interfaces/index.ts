@@ -36,3 +36,11 @@ export interface IUpcoming {
     awayTeamShort: string
   }
 }
+
+export interface ITeams {
+  id: number
+  name: string
+  shortName: string
+  logo: string
+  nameFromAPI: string
+}

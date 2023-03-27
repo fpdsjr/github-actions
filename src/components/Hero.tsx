@@ -1,10 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { format } from 'date-fns'
+
+import { useChannel } from '@/hooks/useStates'
+import { useGetTeams } from '@/hooks/useBuildTeams'
+import { teams } from '@/data'
 
 import banner from '@/assets/aberto_m_jogo19_1811-1630.jpg'
 
 export function Hero() {
+  const { data: channel } = useChannel(6)
+
+  const memoizedValue = useGetTeams(channel, teams)
+
   return (
     <section className="relative h-[90vh] before:content-[''] before:absolute before:inset-0 before:z-20 before:bg-gradient-to-r before:from-[rgba(3,14,65,0.9)30%] before:to-[rgba(4,0,61,0)85%] after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgb(3,14,65)2%] after:to-[rgba(4,0,61,0)40%]">
       <Image
@@ -33,14 +42,59 @@ export function Hero() {
             Assista ao vivo
           </span>
         </motion.div>
-        <motion.h3
-          initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-          className="px-4 text-center text-4xl font-bold tracking-tight mb-1 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start"
-        >
-          Est tempore eaque veritatis!
-        </motion.h3>
+
+        {memoizedValue && memoizedValue.length > 0 && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ y: [100, 0], opacity: [0, 1] }}
+              transition={{ duration: 0.5 }}
+              className="px-4 flex items-center text-center text-4xl font-bold tracking-tight mb-1 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start"
+            >
+              <Image
+                src={memoizedValue[0].processedData.homeTeamLogo ?? ''}
+                alt=""
+                width={100}
+                height={100}
+              />
+              <span className="font-bebas text-2xl text-medium-yellow">VS</span>
+              <Image
+                src={memoizedValue[0].processedData.awayTeamLogo ?? ''}
+                alt=""
+                width={100}
+                height={100}
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ y: [100, 0], opacity: [0, 1] }}
+              transition={{ duration: 0.6 }}
+              className="px-4 mb-6 flex items-center gap-2 md:px-6 lg:px-0"
+            >
+              <span className="font-bebas text-lg">
+                {memoizedValue[0].processedData.title}
+              </span>
+
+              <span className="font-bebas text-base">|</span>
+
+              <div className="flex items-center gap-1">
+                <span className="font-bebas text-lg">
+                  {format(
+                    new Date(memoizedValue[0].start_time),
+                    'dd/MM/yyyy',
+                  ) ?? ''}
+                </span>
+
+                <span className="font-bebas text-lg">-</span>
+
+                <span className="font-bebas text-lg">
+                  {format(new Date(memoizedValue[0].start_time), 'HH:mm') ?? ''}
+                </span>
+              </div>
+            </motion.div>
+          </>
+        )}
+
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ y: [100, 0], opacity: [0, 1] }}
