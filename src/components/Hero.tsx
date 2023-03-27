@@ -6,7 +6,7 @@ import banner from '@/assets/aberto_m_jogo19_1811-1630.jpg'
 
 export function Hero() {
   return (
-    <section className="relative h-[90vh] before:content-[''] before:absolute before:inset-0 before:z-20 before:bg-gradient-to-r before:from-[rgba(4,0,61,0.9)30%] before:to-[rgba(4,0,61,0)85%] after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgb(4,0,61)2%] after:to-[rgba(4,0,61,0)40%]">
+    <section className="relative h-[90vh] before:content-[''] before:absolute before:inset-0 before:z-20 before:bg-gradient-to-r before:from-[rgba(3,14,65,0.9)30%] before:to-[rgba(4,0,61,0)85%] after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgb(3,14,65)2%] after:to-[rgba(4,0,61,0)40%]">
       <Image
         src={banner}
         alt=""
