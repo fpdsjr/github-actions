@@ -25,16 +25,21 @@ export function Upcoming() {
       <Splide
         hasTrack={false}
         options={{
-          perPage: 3,
-          gap: '1.5rem',
+          perPage: 4,
+          gap: '1.2rem',
           padding: 40,
           rewind: true,
           breakpoints: {
             768: {
               perPage: 1,
+              gap: '0.6rem',
+              padding: 20,
+            },
+            1200: {
+              perPage: 2,
             },
             1440: {
-              perPage: 2,
+              perPage: 3,
             },
           },
         }}
