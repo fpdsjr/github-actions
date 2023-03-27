@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply scroll-smooth antialiased bg-dark-blue text-zinc-50;
+}
+
+.scroll {
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  background: rgba(4, 0, 61, 0.64);
+}
+
+.splide__pagination {
+  @apply -bottom-10 !important;
+}
+
+.splide__arrow {
+  @apply py-10 rounded-none bg-gray-300/70 !important;
+}
+
+.splide__arrow--prev {
+  @apply left-0 rounded-r-lg !important;
+}
+
+.splide__arrow--next {
+  @apply right-0 rounded-l-lg !important;
+}
+
+.splide__pagination {
+  @apply flex justify-center gap-6 !important;
+}
+
+.splide__pagination__page {
+  @apply bg-gray-400/90 rounded-none mx-0 w-10 h-0.5 !important;
+}
