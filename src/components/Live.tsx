@@ -14,7 +14,7 @@ export function Live() {
         <section className="relative flex flex-col py-24">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-400">
-              Ao Vivo
+              Assista agora no Canal Vôlei Brasil
             </h2>
             <p className="mt-2 mb-16 text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Debitis vel officiis commodi liquid

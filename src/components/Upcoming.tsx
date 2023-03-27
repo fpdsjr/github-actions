@@ -12,7 +12,7 @@ export function Upcoming() {
 
   return (
     <section className="relative flex flex-col py-24">
-      <div className="mx-auto max-w-4xl text-center">
+      {/* <div className="mx-auto max-w-4xl text-center">
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
           Todo mês 1 competição diferente
         </h2>
@@ -20,7 +20,7 @@ export function Upcoming() {
       <p className="mx-auto mt-6 mb-16 max-w-2xl text-center text-lg leading-8 text-gray-300">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. i dolorem odio
         atque consequuntur illum saepe iste itaque doloribus. Omnis, sit at?
-      </p>
+      </p> */}
 
       <Splide
         hasTrack={false}

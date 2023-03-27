@@ -10,7 +10,7 @@ import '@splidejs/react-splide/css'
 import SLFem from '@/assets/logo_superliga_fem_4.png'
 import SLMas from '@/assets/logo_superliga_masc_6.png'
 
-export function UpcomingV2() {
+export function UpcomingV3() {
   const { data: channel } = useChannel(6)
 
   const addTeamsToChannel = channel?.videos?.upcomming
@@ -49,7 +49,7 @@ export function UpcomingV2() {
 
   return (
     <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue">
-      <div className="mx-auto max-w-4xl text-center">
+      {/* <div className="mx-auto max-w-4xl text-center">
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
           Todo mês 1 competição diferente
         </h2>
@@ -57,7 +57,7 @@ export function UpcomingV2() {
       <p className="mx-auto mt-6 mb-16 max-w-2xl text-center text-lg leading-8 text-gray-300">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. i dolorem odio
         atque consequuntur illum saepe iste itaque doloribus. Omnis, sit at?
-      </p>
+      </p> */}
 
       <Splide
         hasTrack={false}
@@ -84,7 +84,7 @@ export function UpcomingV2() {
         <SplideTrack>
           {addTeamsToChannel?.map((match) => (
             <SplideSlide key={match?.id} className="rounded-lg">
-              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-t from-[rgba(205,255,255,0.28)0%] to-[rgba(2,236,255,0.1)100%] transition">
+              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-b from-[rgba(255,255,255,0.2)0%] to-[rgba(255,255,255,0.6)100%] transition">
                 <div className="flex justify-between items-center py-3 gap-2 border-b border-medium-yellow/70">
                   {match.processedData.title.includes('Feminina') && (
                     <Image src={SLFem} alt="" height={34} className="invert" />

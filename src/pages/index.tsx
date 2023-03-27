@@ -11,6 +11,7 @@ import { Footer } from '@/components/Footer'
 import { Pictures } from '@/components/Pictures'
 import { UpcomingV2 } from '@/components/UpcomingV2'
 import { Faq } from '@/components/Faq'
+import { UpcomingV3 } from '@/components/UpcomingV3'
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <Hero />
       {/* <Live /> */}
       <UpcomingV2 />
+      <UpcomingV3 />
       <Upcoming />
       <Categories />
       <Pricing />
