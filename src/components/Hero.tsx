@@ -3,12 +3,11 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { formatInTimeZone } from 'date-fns-tz'
 import { Swiper, SwiperSlide } from 'swiper/react'
-// import Skeleton from 'react-loading-skeleton'
 
 import { EffectFade, Navigation, Autoplay } from 'swiper'
 
 import { useChannel } from '@/hooks/useStates'
-import { useGetTeams } from '@/hooks/useBuildTeams'
+import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
 
 import CBVPColor from '@/assets/Logo_Colorido.png'
@@ -18,7 +17,6 @@ import bannerF from '@/assets/aberto_f_final_1911-3697.jpg'
 
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 const images = [
   { src: bannerM, alt: 'banner masculino' },
@@ -28,7 +26,7 @@ const images = [
 export function Hero() {
   const { data: videos, isFetching } = useChannel(6)
 
-  const { typeFirstElement, firstElement } = useGetTeams(
+  const { typeFirstElement, firstElement } = useGetEvents(
     videos?.upcomming,
     teams,
   )
@@ -87,22 +85,10 @@ export function Hero() {
                 className="opacity-80"
               />
             </motion.div>
-            {/* <Skeleton
-              width={300}
-              height={100}
-              baseColor="#ebedee1e"
-              highlightColor="#1e0c6c25"
-            />
-            <Skeleton
-              width={300}
-              height={24}
-              baseColor="#ebedee1e"
-              highlightColor="#1e0c6c25"
-            /> */}
           </div>
         ) : (
           <>
-            {typeFirstElement === 'volei de praia' ? (
+            {typeFirstElement === 'withoutTeams' ? (
               <div className="flex flex-col justify-center items-center lg:items-start">
                 <div className="px-4 py-2 flex items-center justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start">
                   <Image src={CBVPColor} alt="" width={80} height={80} />

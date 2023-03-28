@@ -11,6 +11,7 @@ const nextConfig = {
       'tvnsports-assets.s3.sa-east-1.amazonaws.com',
       'cnbl-cdn.bamgrid.com',
       'cdn-placarscoreboard.s3.sa-east-1.amazonaws.com',
+      'cbs.cbv.com.br',
     ],
   },
 }
