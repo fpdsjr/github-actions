@@ -17,7 +17,7 @@ html {
 }
 
 .splide__arrow {
-  @apply hidden lg:block lg:py-10 lg:rounded-none lg:bg-gray-300/70 !important;
+  @apply hidden lg:flex lg:py-10 lg:rounded-none lg:bg-gray-300/70 !important;
 }
 
 .splide__arrow--prev {
