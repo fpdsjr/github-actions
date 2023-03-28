@@ -18,7 +18,7 @@ const tiers = [
     tag: 'Economize 4 meses (38,75% de desconto)',
     href: '#',
     price: 'R$ 7,90',
-    priceObs: '12 meses pelo preço de 7',
+    priceObs: '12 meses pelo preço de 8',
     mostPopular: true,
     textButton: 'Assinar anual',
   },
