@@ -14,6 +14,7 @@ import { UpcomingV2 } from '@/components/UpcomingV2'
 import { Faq } from '@/components/Faq'
 import { UpcomingV3 } from '@/components/UpcomingV3'
 import { getChannel } from '@/lib/tvChannel'
+import { GetStaticProps } from 'next'
 
 export default function Home() {
   return (
@@ -41,7 +42,7 @@ export default function Home() {
   )
 }
 
-export async function getServerSideProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient()
 
   await queryClient.fetchQuery(['tvChannel'], () => getChannel(6))
@@ -50,5 +51,6 @@ export async function getServerSideProps() {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 60 * 60 * 1, // 1 hour
   }
 }
