@@ -33,5 +33,5 @@ html {
 }
 
 .splide__pagination__page {
-  @apply bg-gray-400/90 rounded-none mx-0 w-10 h-0.5 !important;
+  @apply hidden lg:block lg:bg-gray-400/90 lg:rounded-none lg:mx-0 lg:w-10 lg:h-0.5 !important;
 }
