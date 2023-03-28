@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export function Devices() {
   return (
-    <section className="relative flex flex-col items-center py-24">
+    <section className="relative flex flex-col items-center py-24 px-4 sm:px-6 md:px-8 lg:px-10">
       {/* <Image src={bg} fill alt="" className="blur-xl opacity-30 -z-10" /> */}
 
       <div className="mx-auto max-w-4xl text-center">
@@ -24,8 +24,8 @@ export function Devices() {
         Assine agora
       </button>
 
-      <div className="flex justify-between gap-x-14 max-w-2xl mx-auto">
-        <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-between gap-x-14 max-w-2xl mx-auto lg:flex-row">
+        <div className="flex flex-col justify-center items-center max-w-[200px]">
           <Image
             src="https://static.wixstatic.com/media/315203_8709e523dedc437986de58e5712b2756~mv2.png/v1/fill/w_300,h_288,al_c,q_85,enc_auto/VBtv-Icons_01.png"
             alt=""
@@ -37,7 +37,7 @@ export function Devices() {
             Lorem ipsum dolor sit atur laborum sit adipisci id non tenetur.
           </span>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center max-w-[200px]">
           <Image
             src="https://static.wixstatic.com/media/315203_c72315e16953492aa69b3cc5ead534f5~mv2.png/v1/fill/w_288,h_288,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/VBtv-Icons_03.png"
             alt=""
@@ -49,7 +49,7 @@ export function Devices() {
             Dolor sit atur laborum sit adipisci id non tenetur.
           </span>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center max-w-[200px]">
           <Image
             src="https://static.wixstatic.com/media/315203_b12ec0944f874e019d726babecc7db80~mv2.png/v1/fill/w_294,h_294,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/VBtv-Icons_04.png"
             alt=""

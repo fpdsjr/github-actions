@@ -21,12 +21,12 @@ export function UpcomingV2() {
 
   return (
     <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue">
-      <div className="mx-auto max-w-4xl text-center">
+      <div className="mx-auto max-w-4xl text-center px-4 sm:px-6 md:px-8 lg:px-10">
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
           Todo mês 1 competição diferente
         </h2>
       </div>
-      <p className="mx-auto mt-6 mb-16 max-w-2xl text-center text-lg leading-8 text-gray-300">
+      <p className="mx-auto mt-6 mb-16 max-w-2xl text-center text-lg leading-8 text-gray-300 px-4 sm:px-6 md:px-8 lg:px-10">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. i dolorem odio
         atque consequuntur illum saepe iste itaque doloribus. Omnis, sit at?
       </p>

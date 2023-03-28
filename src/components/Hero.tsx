@@ -19,18 +19,18 @@ export function Hero() {
   )
 
   return (
-    <section className="relative h-[90vh] before:absolute before:inset-0 before:z-20 before:bg-gradient-to-r before:from-[rgba(3,14,65,0.96)30%] before:to-[rgba(4,0,61,0)85%] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgb(3,14,65)2%] after:to-[rgba(4,0,61,0)40%]">
+    <section className="relative lg:before:absolute lg:before:inset-0 lg:before:z-20 lg:before:bg-gradient-to-r lg:before:from-[rgba(3,14,65,0.96)30%] lg:before:to-[rgba(4,0,61,0)85%] lg:after:absolute lg:after:inset-0 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)2%] lg:after:to-[rgba(4,0,61,0)40%] lg:h-[90vh]">
+      <div className="h-[60vh] absolute z-30 bg-gradient-to-t from-dark-blue w-full lg:hidden"></div>
       <Image
         src={banner}
         alt=""
-        fill
-        className="m-auto object-cover object-[50%,30%] absolute"
+        className="w-full object-cover h-[60vh] relative lg:absolute lg:h-screen"
       />
 
-      <div className="relative flex flex-col justify-center top-0 h-full z-20 lg:pl-[6%]">
+      <div className="flex flex-col justify-center top-0 h-full z-20 lg:absolute lg:pl-[6%]">
         <motion.h1
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.3 }}
           className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start"
         >
@@ -38,7 +38,7 @@ export function Hero() {
         </motion.h1>
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.4 }}
           className="h-10 bg-gradient-to-r from-sky-300 flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent"
         >
@@ -54,12 +54,12 @@ export function Hero() {
         ) : (
           <>
             {typeFirstElement === 'volei de praia' ? (
-              <>
+              <div className="flex flex-col justify-center items-center lg:items-start">
                 <motion.div
                   initial={{ opacity: 0 }}
-                  whileInView={{ y: [100, 0], opacity: [0, 1] }}
+                  animate={{ y: [100, 0], opacity: [0, 1] }}
                   transition={{ duration: 0.5 }}
-                  className="px-4 py-2 flex items-center text-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start"
+                  className="px-4 py-2 flex items-center justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start"
                 >
                   <Image src={CBVPColor} alt="" width={80} height={80} />
 
@@ -76,15 +76,15 @@ export function Hero() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  whileInView={{ y: [100, 0], opacity: [0, 1] }}
+                  animate={{ y: [100, 0], opacity: [0, 1] }}
                   transition={{ duration: 0.6 }}
-                  className="px-4 mb-6 flex items-center gap-2 md:px-6 lg:px-0"
+                  className="px-4 mb-6 flex flex-col items-center gap-2 md:px-6 lg:px-0 lg:flex-row"
                 >
                   <span className="font-bebas text-lg">
                     {firstElement?.processedData.title}
                   </span>
 
-                  <span className="font-bebas text-base">|</span>
+                  <span className="hidden font-bebas text-base">|</span>
 
                   <div className="flex items-center gap-1">
                     <span className="font-bebas text-lg">
@@ -108,12 +108,12 @@ export function Hero() {
                     </span>
                   </div>
                 </motion.div>
-              </>
+              </div>
             ) : (
               <>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  whileInView={{ y: [100, 0], opacity: [0, 1] }}
+                  animate={{ y: [100, 0], opacity: [0, 1] }}
                   transition={{ duration: 0.5 }}
                   className="px-4 flex items-center text-center text-4xl font-bold tracking-tight mb-1 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start"
                 >
@@ -135,7 +135,7 @@ export function Hero() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  whileInView={{ y: [100, 0], opacity: [0, 1] }}
+                  animate={{ y: [100, 0], opacity: [0, 1] }}
                   transition={{ duration: 0.6 }}
                   className="px-4 mb-6 flex items-center gap-2 md:px-6 lg:px-0"
                 >
@@ -174,7 +174,7 @@ export function Hero() {
 
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.6 }}
           className="px-4 text-center text-[22px] font-light tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start"
         >
@@ -182,7 +182,7 @@ export function Hero() {
         </motion.p>
         <motion.h1
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.7 }}
           className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start"
         >
@@ -190,7 +190,7 @@ export function Hero() {
         </motion.h1>
         <motion.h3
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.8 }}
           className="px-4 text-center uppercase font-medium text-4xl tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start"
         >
@@ -198,13 +198,13 @@ export function Hero() {
         </motion.h3>
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ y: [100, 0], opacity: [0, 1] }}
+          animate={{ y: [100, 0], opacity: [0, 1] }}
           transition={{ duration: 0.9 }}
           className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-start"
         >
           <Link
             href=""
-            className="uppercase bg-sky-300 text-zinc-900 italic font-semibold text-lg px-10 py-2 rounded-md transition hover:brightness-125 hover:scale-[1.02]"
+            className="uppercase bg-sky-300 text-zinc-900 italic font-semibold text-base px-4 py-2 rounded-md transition hover:brightness-125 hover:scale-[1.02] lg:px-10"
           >
             Quero assistir vôlei o ano todo!
           </Link>

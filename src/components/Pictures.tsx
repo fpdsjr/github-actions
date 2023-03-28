@@ -38,6 +38,19 @@ export const Pictures = () => {
           speed: 1200,
           lazyLoad: 'nearby',
           easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+          breakpoints: {
+            768: {
+              perPage: 1,
+              gap: '1rem',
+              padding: 40,
+            },
+            1200: {
+              perPage: 2,
+            },
+            1440: {
+              perPage: 3,
+            },
+          },
         }}
         hasTrack={false}
         className="splide-pictures"
