@@ -59,7 +59,7 @@ export function Hero() {
         ))}
       </Swiper>
 
-      <div className="flex flex-col justify-center top-0 h-full z-20 lg:absolute lg:pl-[6%]">
+      <div className="flex flex-col justify-center top-0 h-full z-40 lg:absolute lg:pl-[6%]">
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ y: [100, 0], opacity: [0, 1] }}
