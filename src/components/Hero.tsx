@@ -2,13 +2,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { formatInTimeZone } from 'date-fns-tz'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { EffectFade, Navigation, Autoplay } from 'swiper'
 
 import { useChannel } from '@/hooks/useStates'
 import { useGetTeams } from '@/hooks/useBuildTeams'
 import { teams } from '@/data'
 
-import banner from '@/assets/aberto_m_jogo19_1811-1630.jpg'
+import bannerM from '@/assets/aberto_m_jogo19_1811-1630.jpg'
+import bannerF from '@/assets/aberto_f_final_1911-3697.jpg'
 import CBVPColor from '@/assets/Logo_Colorido.png'
+
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+
+const images = [
+  { src: bannerM, alt: 'banner masculino' },
+  { src: bannerF, alt: 'banner feminino' },
+]
 
 export function Hero() {
   const { data: videos, isLoading } = useChannel(6)
@@ -19,13 +31,33 @@ export function Hero() {
   )
 
   return (
-    <section className="relative lg:before:absolute lg:before:inset-0 lg:before:z-20 lg:before:bg-gradient-to-r lg:before:from-[rgba(3,14,65,0.96)30%] lg:before:to-[rgba(4,0,61,0)85%] lg:after:absolute lg:after:inset-0 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)2%] lg:after:to-[rgba(4,0,61,0)40%] lg:h-[90vh]">
+    <section className="relative lg:before:absolute lg:before:inset-0 lg:before:z-20 lg:before:bg-gradient-to-r lg:before:from-[rgba(3,14,65,0.96)30%] lg:before:to-[rgba(4,0,61,0)85%] lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)2%] lg:after:to-[rgba(4,0,61,0)40%] lg:h-[90vh]">
       <div className="h-[60vh] absolute z-30 bg-gradient-to-t from-dark-blue w-full lg:hidden"></div>
-      <Image
-        src={banner}
-        alt=""
-        className="w-full object-cover h-[60vh] relative lg:absolute lg:h-screen"
-      />
+
+      <Swiper
+        slidesPerView={1}
+        effect={'fade'}
+        autoplay={{
+          delay: 50000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        modules={[EffectFade, Navigation, Autoplay]}
+        className="h-full"
+      >
+        {images.map((img) => (
+          <SwiperSlide key={img.alt}>
+            <Image
+              key={img.alt}
+              src={img.src}
+              alt={img.alt}
+              placeholder="blur"
+              blurDataURL=""
+              className="w-full object-cover h-[60vh] relative lg:absolute lg:h-[90vh]"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       <div className="flex flex-col justify-center top-0 h-full z-20 lg:absolute lg:pl-[6%]">
         <motion.h1
