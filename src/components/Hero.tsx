@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { formatInTimeZone } from 'date-fns-tz'
 import { Swiper, SwiperSlide } from 'swiper/react'
+// import Skeleton from 'react-loading-skeleton'
 
 import { EffectFade, Navigation, Autoplay } from 'swiper'
 
@@ -10,12 +11,14 @@ import { useChannel } from '@/hooks/useStates'
 import { useGetTeams } from '@/hooks/useBuildTeams'
 import { teams } from '@/data'
 
+import CBVPColor from '@/assets/Logo_Colorido.png'
+import ball from '@/assets/bola-de-voleibol.png'
 import bannerM from '@/assets/aberto_m_jogo19_1811-1630.jpg'
 import bannerF from '@/assets/aberto_f_final_1911-3697.jpg'
-import CBVPColor from '@/assets/Logo_Colorido.png'
 
 import 'swiper/css'
 import 'swiper/css/effect-fade'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const images = [
   { src: bannerM, alt: 'banner masculino' },
@@ -23,7 +26,7 @@ const images = [
 ]
 
 export function Hero() {
-  const { data: videos, isLoading } = useChannel(6)
+  const { data: videos, isFetching } = useChannel(6)
 
   const { typeFirstElement, firstElement } = useGetTeams(
     videos?.upcomming,
@@ -60,39 +63,48 @@ export function Hero() {
       </Swiper>
 
       <div className="flex flex-col justify-center top-0 h-full z-40 lg:absolute lg:pl-[6%]">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.3 }}
-          className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start"
-        >
+        <h1 className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
           <strong>Novo Canal Vôlei Brasil</strong>
-        </motion.h1>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.4 }}
-          className="h-10 bg-gradient-to-r from-sky-300 flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent"
-        >
+        </h1>
+        <div className="h-10 bg-gradient-to-r from-sky-300 flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent">
           <span className="text-xl font-medium italic -skew-x-12 lg:skew-x-0 lg:ml-44">
             Assista ao vivo
           </span>
-        </motion.div>
+        </div>
 
-        {isLoading ? (
-          <div className="flex justify-center">
-            <div className="loader" />
+        {isFetching ? (
+          <div className="flex flex-col justify-start h-40">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image
+                src={ball}
+                alt=""
+                width={100}
+                height={100}
+                className="opacity-80"
+              />
+            </motion.div>
+            {/* <Skeleton
+              width={300}
+              height={100}
+              baseColor="#ebedee1e"
+              highlightColor="#1e0c6c25"
+            />
+            <Skeleton
+              width={300}
+              height={24}
+              baseColor="#ebedee1e"
+              highlightColor="#1e0c6c25"
+            /> */}
           </div>
         ) : (
           <>
             {typeFirstElement === 'volei de praia' ? (
               <div className="flex flex-col justify-center items-center lg:items-start">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ y: [100, 0], opacity: [0, 1] }}
-                  transition={{ duration: 0.5 }}
-                  className="px-4 py-2 flex items-center justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start"
-                >
+                <div className="px-4 py-2 flex items-center justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start">
                   <Image src={CBVPColor} alt="" width={80} height={80} />
 
                   <div className="flex flex-col text-lg">
@@ -105,13 +117,8 @@ export function Hero() {
                       <span>{firstElement?.processedData.day}</span>
                     </div>
                   </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ y: [100, 0], opacity: [0, 1] }}
-                  transition={{ duration: 0.6 }}
-                  className="px-4 mb-6 flex flex-col items-center gap-2 md:px-6 lg:px-0 lg:flex-row"
-                >
+                </div>
+                <div className="px-4 mb-6 flex flex-col items-center gap-2 md:px-6 lg:px-0 lg:flex-row">
                   <span className="font-bebas text-lg">
                     {firstElement?.processedData.title}
                   </span>
@@ -139,16 +146,11 @@ export function Hero() {
                         )}
                     </span>
                   </div>
-                </motion.div>
+                </div>
               </div>
             ) : (
               <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ y: [100, 0], opacity: [0, 1] }}
-                  transition={{ duration: 0.5 }}
-                  className="px-4 flex items-center text-center text-4xl font-bold tracking-tight mb-1 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start"
-                >
+                <div className="px-4 flex items-center text-center text-4xl font-bold tracking-tight mb-1 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:text-start">
                   <Image
                     src={firstElement?.processedData.homeTeamLogo ?? ''}
                     alt=""
@@ -164,13 +166,8 @@ export function Hero() {
                     width={100}
                     height={100}
                   />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ y: [100, 0], opacity: [0, 1] }}
-                  transition={{ duration: 0.6 }}
-                  className="px-4 mb-6 flex items-center gap-2 md:px-6 lg:px-0"
-                >
+                </div>
+                <div className="px-4 mb-6 flex items-center gap-2 md:px-6 lg:px-0">
                   <span className="font-bebas text-lg">
                     {firstElement?.processedData.title}
                   </span>
@@ -198,49 +195,29 @@ export function Hero() {
                         )}
                     </span>
                   </div>
-                </motion.div>
+                </div>
               </>
             )}
           </>
         )}
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.6 }}
-          className="px-4 text-center text-[22px] font-light tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start"
-        >
+        <p className="px-4 text-center text-[22px] font-light tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start">
           Assista às maiores competições de voleibol do país
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.7 }}
-          className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start"
-        >
+        </p>
+        <h1 className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
           <strong>Dis beatae</strong>
-        </motion.h1>
-        <motion.h3
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.8 }}
-          className="px-4 text-center uppercase font-medium text-4xl tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start"
-        >
+        </h1>
+        <h3 className="px-4 text-center uppercase font-medium text-4xl tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start">
           Lorem ipsum dolor sit
-        </motion.h3>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ y: [100, 0], opacity: [0, 1] }}
-          transition={{ duration: 0.9 }}
-          className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-start"
-        >
+        </h3>
+        <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-start">
           <Link
             href=""
             className="uppercase bg-sky-300 text-zinc-900 italic font-semibold text-base px-4 py-2 rounded-md transition hover:brightness-125 hover:scale-[1.02] lg:px-10"
           >
             Quero assistir vôlei o ano todo!
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

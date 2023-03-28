@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
 
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
@@ -13,8 +12,6 @@ import { Pictures } from '@/components/Pictures'
 import { UpcomingV2 } from '@/components/UpcomingV2'
 import { Faq } from '@/components/Faq'
 import { UpcomingV3 } from '@/components/UpcomingV3'
-import { getChannel } from '@/lib/tvChannel'
-import { GetStaticProps } from 'next'
 
 export default function Home() {
   return (
@@ -40,17 +37,4 @@ export default function Home() {
       <Footer />
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const queryClient = new QueryClient()
-
-  await queryClient.fetchQuery(['tvChannel'], () => getChannel(6))
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-    revalidate: 60 * 60 * 1, // 1 hour
-  }
 }

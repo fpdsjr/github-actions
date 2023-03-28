@@ -17,7 +17,6 @@ export function UpcomingV2() {
   const { data: videos } = useChannel(6)
 
   const { getTeams } = useGetTeams(videos?.upcomming, teams)
-  console.log(getTeams)
 
   return (
     <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue">
