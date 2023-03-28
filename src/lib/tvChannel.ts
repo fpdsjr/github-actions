@@ -7,7 +7,7 @@ const apiTvChannel = axios.create({
 
 export const getChannel = async (channel: number) => {
   const { data } = await apiTvChannel.get<ITvChannel>(`/${channel}/videos/home`)
-  return data
+  return data.videos
 }
 
 // 6 - Canal Vôlei Brasil

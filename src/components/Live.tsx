@@ -6,11 +6,11 @@ import { useChannel } from '@/hooks/useStates'
 import '@splidejs/react-splide/css'
 
 export function Live() {
-  const { data: channel } = useChannel(6)
+  const { data: videos } = useChannel(6)
 
   return (
     <>
-      {channel?.videos.lives && channel?.videos.upcomming.length > 0 && (
+      {videos?.upcomming && videos?.upcomming.length > 0 && (
         <section className="relative flex flex-col py-24">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-400">
@@ -39,7 +39,7 @@ export function Live() {
             }}
           >
             <SplideTrack>
-              {channel?.videos.upcomming.map((video) => (
+              {videos?.upcomming.map((video) => (
                 <SplideSlide
                   key={video.id}
                   className="border border-zinc-200 rounded-lg backdrop-blur-lg bg-white/20"

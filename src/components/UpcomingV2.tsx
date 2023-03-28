@@ -1,51 +1,23 @@
 import Image from 'next/image'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
-import { format } from 'date-fns'
+import { formatInTimeZone } from 'date-fns-tz'
 
 import { useChannel } from '@/hooks/useStates'
+import { useGetTeams } from '@/hooks/useBuildTeams'
 import { teams } from '@/data'
 
 import '@splidejs/react-splide/css'
 
 import SLFem from '@/assets/logo_superliga_fem_4.png'
 import SLMas from '@/assets/logo_superliga_masc_6.png'
+import CBVP from '@/assets/CBVP.png'
+import CBVPColor from '@/assets/Logo_Colorido.png'
 
 export function UpcomingV2() {
-  const { data: channel } = useChannel(6)
+  const { data: videos } = useChannel(6)
 
-  const addTeamsToChannel = channel?.videos?.upcomming
-    ?.map((upcomming) => {
-      const title = upcomming.description.split(':')[0].trim()
-      const homeTeam = upcomming.description.split(':')[1]?.split('x')[0].trim()
-      const awayTeam = upcomming.description.split(':')[1]?.split('x')[1].trim()
-
-      const findHomeTeamLogo = teams.find(
-        (team) => team.nameFromAPI === homeTeam,
-      )
-      const findAwayTeamLogo = teams.find(
-        (team) => team.nameFromAPI === awayTeam,
-      )
-
-      const newVideo = {
-        ...upcomming,
-        processedData: {
-          title,
-          homeTeam: findHomeTeamLogo?.name,
-          homeTeamLogo: findHomeTeamLogo?.logo,
-          homeTeamShort: findHomeTeamLogo?.shortName,
-          awayTeam: findAwayTeamLogo?.name,
-          awayTeamLogo: findAwayTeamLogo?.logo,
-          awayTeamShort: findAwayTeamLogo?.shortName,
-        },
-      }
-
-      return newVideo
-    })
-    .filter(
-      (match) =>
-        match.processedData.homeTeam !== undefined &&
-        match.processedData.awayTeam !== undefined,
-    )
+  const { getTeams } = useGetTeams(videos?.upcomming, teams)
+  console.log(getTeams)
 
   return (
     <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue">
@@ -82,59 +54,88 @@ export function UpcomingV2() {
         }}
       >
         <SplideTrack>
-          {addTeamsToChannel?.map((match) => (
+          {getTeams?.map((match) => (
             <SplideSlide key={match?.id} className="rounded-lg">
               <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-t from-[rgba(205,255,255,0.28)0%] to-[rgba(2,236,255,0.1)100%] transition">
                 <div className="flex justify-between items-center py-3 gap-2 border-b border-medium-yellow/70">
-                  {match.processedData.title.includes('Feminina') && (
+                  {match?.processedData.title.includes('Feminina') && (
                     <Image src={SLFem} alt="" height={34} className="invert" />
                   )}
-                  {match.processedData.title.includes('Masculina') && (
+                  {match?.processedData.title.includes('Masculina') && (
                     <Image src={SLMas} alt="" height={34} className="invert" />
                   )}
+                  {match?.processedData.title.includes(
+                    'Circuito Brasileiro',
+                  ) && <Image src={CBVP} alt="" height={34} />}
 
                   <div className="flex gap-2">
                     <span className="font-bebas text-lg">
-                      {format(new Date(match.start_time), 'dd/MM/yyyy')}
+                      {formatInTimeZone(
+                        new Date(match?.start_time),
+                        'Etc/Universal',
+                        'dd/MM/yyyy',
+                      )}
                     </span>
 
                     <span>-</span>
 
                     <span className="font-bebas text-lg">
-                      {format(new Date(match.start_time), 'HH:mm')}
+                      {formatInTimeZone(
+                        new Date(match?.start_time),
+                        'Etc/Universal',
+                        'hh:mm',
+                      )}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex justify-between items-start py-6">
-                  <div className="flex flex-col items-center gap-3 w-[36%]">
-                    <Image
-                      src={match.processedData.homeTeamLogo ?? ''}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                    <span className="font-bebas text-center text-lg text-white">
-                      {match.processedData.homeTeam}
+                {match?.processedData.title.includes('Circuito Brasileiro') ? (
+                  <div className="flex flex-col items-center justify-between py-6">
+                    <Image src={CBVPColor} alt="" width={100} height={100} />
+                    <span className="font-bebas text-center text-2xl text-medium-yellow/90 mt-3">
+                      {match?.processedData.court}
                     </span>
+                    <div className="flex gap-2">
+                      <span className="font-bebas text-center text-lg text-white">
+                        {match?.processedData.step}
+                      </span>
+                      <span>|</span>
+                      <span className="font-bebas text-center text-lg text-white">
+                        {match?.processedData.day}
+                      </span>
+                    </div>
                   </div>
+                ) : (
+                  <div className="flex justify-between items-start py-6">
+                    <div className="flex flex-col items-center gap-3 w-[36%]">
+                      <Image
+                        src={match?.processedData.homeTeamLogo ?? ''}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                      <span className="font-bebas text-center text-lg text-white">
+                        {match?.processedData.homeTeam}
+                      </span>
+                    </div>
 
-                  <span className="text-bold font-bebas text-2xl self-center text-medium-yellow/90">
-                    VS
-                  </span>
-
-                  <div className="flex flex-col items-center gap-3 w-[36%]">
-                    <Image
-                      src={match.processedData.awayTeamLogo ?? ''}
-                      alt=""
-                      width={100}
-                      height={100}
-                    />
-                    <span className="font-bebas text-center text-lg text-white">
-                      {match.processedData.awayTeam}
+                    <span className="text-bold font-bebas text-2xl self-center text-medium-yellow/90">
+                      VS
                     </span>
+
+                    <div className="flex flex-col items-center gap-3 w-[36%]">
+                      <Image
+                        src={match?.processedData.awayTeamLogo ?? ''}
+                        alt=""
+                        width={100}
+                        height={100}
+                      />
+                      <span className="font-bebas text-center text-lg text-white">
+                        {match?.processedData.awayTeam}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </SplideSlide>
           ))}
