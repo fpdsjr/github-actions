@@ -6,12 +6,11 @@ import { Pricing } from '@/components/Pricing'
 import { Categories } from '@/components/Categories'
 import { Devices } from '@/components/Devices'
 // import { Live } from '@/components/Live'
-import { Upcoming } from '@/components/Upcoming'
 import { Footer } from '@/components/Footer'
 import { Pictures } from '@/components/Pictures'
-import { UpcomingV2 } from '@/components/UpcomingV2'
+import { UpcomingBeach } from '@/components/UpcomingBeach'
 import { Faq } from '@/components/Faq'
-import { UpcomingV3 } from '@/components/UpcomingV3'
+import { UpcomingCourt } from '@/components/UpcomingCourt'
 
 export default function Home() {
   return (
@@ -24,10 +23,8 @@ export default function Home() {
       <Navbar />
 
       <Hero />
-      {/* <Live /> */}
-      <UpcomingV2 />
-      <UpcomingV3 />
-      <Upcoming />
+      <UpcomingBeach />
+      <UpcomingCourt />
       <Categories />
       <Pricing />
       <Pictures />

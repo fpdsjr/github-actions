@@ -13,7 +13,7 @@ import SLMas from '@/assets/logo_superliga_masc_6.png'
 import CBVP from '@/assets/CBVP.png'
 import CBVPColor from '@/assets/Logo_Colorido.png'
 
-export function UpcomingV2() {
+export function UpcomingCourt() {
   const { data: videos } = useChannel(6)
 
   const { getTeams } = useGetTeams(videos?.upcomming, teams)
@@ -55,7 +55,7 @@ export function UpcomingV2() {
         <SplideTrack>
           {getTeams?.map((match) => (
             <SplideSlide key={match?.id} className="rounded-lg">
-              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-t from-[rgba(205,255,255,0.28)0%] to-[rgba(2,236,255,0.1)100%] transition">
+              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-b from-[rgba(255,255,255,0.13)0%] to-[rgba(255,255,255,0.5)100%] transition">
                 <div className="flex justify-between items-center py-3 gap-2 border-b border-medium-yellow/70">
                   {match?.processedData.title.includes('Feminina') && (
                     <Image src={SLFem} alt="" height={34} className="invert" />
@@ -82,7 +82,7 @@ export function UpcomingV2() {
                       {formatInTimeZone(
                         new Date(match?.start_time),
                         'Etc/Universal',
-                        'hh:mm',
+                        'HH:mm',
                       )}
                     </span>
                   </div>
