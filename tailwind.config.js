@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         bebas: ['Bebas Neue', 'sans-serif'],
+        paralucentDemiBoldItalic: ['Paralucent DemiBold Italic', 'sans-serif'],
       },
     },
   },

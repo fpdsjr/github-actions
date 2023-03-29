@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Paralucent DemiBold Italic";
+  src: url("./fonts/otf/Paralucent-DemiBoldItalic.otf") format('opentype'), url("./fonts/ttf/Paralucent-DemiBoldItalic.ttf") format('truetype');
+}
+
 html {
   @apply scroll-smooth antialiased bg-dark-blue text-zinc-50;
 }

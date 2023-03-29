@@ -64,7 +64,7 @@ export function Hero() {
       </Swiper>
 
       <div className="flex flex-col justify-center top-0 h-full z-40 lg:absolute lg:pl-[6%]">
-        <h1 className="px-4 text-center italic text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
+        <h1 className="px-4 text-center font-paralucentDemiBoldItalic text-5xl uppercase tracking-wider flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
           <strong>Novo Canal Vôlei Brasil</strong>
         </h1>
         <div className="h-10 bg-gradient-to-r from-medium-blue flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent">
@@ -221,7 +221,7 @@ export function Hero() {
         <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-start">
           <Link
             href=""
-            className="uppercase bg-medium-blue text-white text-center italic font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+            className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
           >
             Quero assistir vôlei o ano todo!
           </Link>
