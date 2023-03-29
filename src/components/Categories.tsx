@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
-import bannerGrid from '@/assets/banner-grid-1920x1080.jpg'
+import bannerMobile from '@/assets/banner-grid-640X640.jpg'
+import bannerDesktop from '@/assets/banner-grid-1920x1080.jpg'
 
 export function Categories() {
   return (
@@ -16,7 +17,18 @@ export function Categories() {
       </p>
 
       <div className="relative h-screen w-full py-24 flex justify-center px-4 sm:px-6 md:px-8 lg:px-10">
-        <Image src={bannerGrid} alt="" fill className="object-cover" />
+        <Image
+          src={bannerMobile}
+          alt=""
+          fill
+          className="object-contain sm:hidden"
+        />
+        <Image
+          src={bannerDesktop}
+          alt=""
+          fill
+          className="hidden sm:block sm:object-contain 2xl:object-cover"
+        />
       </div>
     </div>
   )
