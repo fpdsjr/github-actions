@@ -8,7 +8,8 @@ export const useGetEvents = (
 ) => {
   const getEvents = useMemo(() => {
     return upcoming
-      ?.filter(
+      ?.filter((events) => !events.description.includes('Acompanhe'))
+      .filter(
         (matches) =>
           matches.description.includes('Circuito Brasileiro') ||
           matches.description.includes('Campeonato Brasileiro') ||
