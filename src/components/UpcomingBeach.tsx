@@ -17,7 +17,7 @@ export function UpcomingBeach() {
   const { getBeachEvents } = useGetEvents(videos?.upcomming, teams)
 
   return (
-    <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue">
+    <section className="relative flex flex-col py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
       <div className="mx-auto max-w-4xl text-center px-4 sm:px-6 md:px-8 lg:px-10">
         <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
           Todo mês 1 competição diferente

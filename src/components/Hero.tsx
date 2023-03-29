@@ -12,15 +12,19 @@ import { teams } from '@/data'
 
 import CBVPColor from '@/assets/Logo_Colorido.png'
 import ball from '@/assets/bola-de-voleibol.png'
-import bannerM from '@/assets/aberto_m_jogo19_1811-1630.jpg'
-import bannerF from '@/assets/aberto_f_final_1911-3697.jpg'
+import b1 from '@/assets/aberto_m_jogo19_1811-1630.jpg'
+import b2 from '@/assets/aberto_f_final_1911-3697.jpg'
+import b3 from '@/assets/banner-principal-1920x1080.jpg'
+import b4 from '@/assets/banner-principal-1920x1080-2.jpg'
 
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 
 const images = [
-  { src: bannerM, alt: 'banner masculino' },
-  { src: bannerF, alt: 'banner feminino' },
+  { src: b1, alt: 'banner 1' },
+  { src: b2, alt: 'banner 2' },
+  { src: b3, alt: 'banner 3' },
+  { src: b4, alt: 'banner 4' },
 ]
 
 export function Hero() {
@@ -32,7 +36,7 @@ export function Hero() {
   )
 
   return (
-    <section className="relative lg:before:absolute lg:before:inset-0 lg:before:z-20 lg:before:bg-gradient-to-r lg:before:from-[rgba(3,14,65,0.96)30%] lg:before:to-[rgba(4,0,61,0)85%] lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)2%] lg:after:to-[rgba(4,0,61,0)40%] lg:h-[90vh]">
+    <section className="relative lg:before:absolute lg:before:inset-0 lg:before:z-20 lg:before:bg-gradient-to-r lg:before:from-[rgba(3,14,65,0.96)10%] lg:before:to-[rgba(4,0,61,0)85%] lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
       <div className="h-[60vh] absolute z-30 bg-gradient-to-t from-dark-blue w-full lg:hidden"></div>
 
       <Swiper
@@ -49,23 +53,22 @@ export function Hero() {
         {images.map((img) => (
           <SwiperSlide key={img.alt}>
             <Image
-              key={img.alt}
               src={img.src}
               alt={img.alt}
               placeholder="blur"
               blurDataURL=""
-              className="w-full object-cover h-[60vh] relative lg:absolute lg:h-[90vh]"
+              className="w-full object-cover object-[50%,30%] h-[60vh] relative lg:absolute lg:h-[90vh]"
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
       <div className="flex flex-col justify-center top-0 h-full z-40 lg:absolute lg:pl-[6%]">
-        <h1 className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
+        <h1 className="px-4 text-center italic text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
           <strong>Novo Canal Vôlei Brasil</strong>
         </h1>
-        <div className="h-10 bg-gradient-to-r from-sky-300 flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent">
-          <span className="text-xl font-medium italic -skew-x-12 lg:skew-x-0 lg:ml-44">
+        <div className="h-10 bg-gradient-to-r from-medium-blue flex items-center justify-center mb-8 lg:mb-3 lg:w-[28rem] lg:-ml-44 lg:justify-start lg:-skew-x-12 lg:to-transparent">
+          <span className="text-xl font-medium -skew-x-12 lg:skew-x-0 lg:ml-44">
             Assista ao vivo
           </span>
         </div>
@@ -80,8 +83,8 @@ export function Hero() {
               <Image
                 src={ball}
                 alt=""
-                width={100}
-                height={100}
+                width={120}
+                height={120}
                 className="opacity-80"
               />
             </motion.div>
@@ -90,29 +93,54 @@ export function Hero() {
           <>
             {typeFirstElement === 'withoutTeams' ? (
               <div className="flex flex-col justify-center items-center lg:items-start">
-                <div className="px-4 py-2 flex items-center justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start">
-                  <Image src={CBVPColor} alt="" width={80} height={80} />
+                <span className="font-bebas text-2xl mt-1">
+                  {firstElement?.processedData.title}
+                </span>
 
-                  <div className="flex flex-col text-lg">
-                    <span className="text-medium-yellow/90">
-                      {firstElement?.processedData.court}
-                    </span>
+                <div className="px-4 pt-2 flex flex-col justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start">
+                  {firstElement?.description.includes(
+                    'Campeonato Brasileiro',
+                  ) && (
+                    <Image
+                      src={'https://cbs.cbv.com.br/assets/images/logo-cbs.png'}
+                      alt=""
+                      width={100}
+                      height={100}
+                      className="invert"
+                    />
+                  )}
+
+                  {firstElement?.description.includes(
+                    'Circuito Brasileiro',
+                  ) && <Image src={CBVPColor} alt="" width={80} height={80} />}
+
+                  <div className="flex flex-col">
+                    {firstElement?.processedData.court && (
+                      <span className="text-medium-yellow/90 text-xl">
+                        {firstElement?.processedData.court}
+                      </span>
+                    )}
                     <div className="flex gap-2 items-center font-medium">
-                      <span>{firstElement?.processedData.step}</span>
-                      <span>|</span>
-                      <span>{firstElement?.processedData.day}</span>
+                      {firstElement?.processedData.step && (
+                        <>
+                          <span>{firstElement?.processedData.step}</span>
+                          <span>|</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="px-4 mb-6 flex flex-col items-center gap-2 md:px-6 lg:px-0 lg:flex-row">
-                  <span className="font-bebas text-lg">
-                    {firstElement?.processedData.title}
+                  <span className="font-bebas text-xl">
+                    {firstElement?.processedData.day}
                   </span>
 
-                  <span className="hidden font-bebas text-base">|</span>
+                  <span className="hidden lg:flex lg:font-bebas lg:text-base">
+                    |
+                  </span>
 
                   <div className="flex items-center gap-1">
-                    <span className="font-bebas text-lg">
+                    <span className="font-bebas text-xl">
                       {firstElement &&
                         formatInTimeZone(
                           new Date(firstElement?.start_time),
@@ -121,9 +149,9 @@ export function Hero() {
                         )}
                     </span>
 
-                    <span className="font-bebas text-lg">-</span>
+                    <span className="font-bebas text-xl">-</span>
 
-                    <span className="font-bebas text-lg">
+                    <span className="font-bebas text-xl">
                       {firstElement &&
                         formatInTimeZone(
                           new Date(firstElement?.start_time),
@@ -190,16 +218,10 @@ export function Hero() {
         <p className="px-4 text-center text-[22px] font-light tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start">
           Assista às maiores competições de voleibol do país
         </p>
-        <h1 className="px-4 text-center text-5xl uppercase tracking-tight flex flex-col mb-3 md:px-6 md:block lg:px-0 lg:text-start">
-          <strong>Dis beatae</strong>
-        </h1>
-        <h3 className="px-4 text-center uppercase font-medium text-4xl tracking-tight mb-6 md:px-6 lg:px-0 lg:text-start">
-          Lorem ipsum dolor sit
-        </h3>
         <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-start">
           <Link
             href=""
-            className="uppercase bg-sky-300 text-zinc-900 italic font-semibold text-base px-4 py-2 rounded-md transition hover:brightness-125 hover:scale-[1.02] lg:px-10"
+            className="uppercase bg-medium-blue text-white text-center italic font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
           >
             Quero assistir vôlei o ano todo!
           </Link>

@@ -12,7 +12,7 @@ export const useGetEvents = (
         (matches) =>
           matches.description.includes('Circuito Brasileiro') ||
           matches.description.includes('Campeonato Brasileiro') ||
-          matches.description.includes('Superliga'),
+          matches.description.includes('Superliga 1XBET'),
       )
       .map((video) => {
         if (video.description.includes('Circuito Brasileiro')) {

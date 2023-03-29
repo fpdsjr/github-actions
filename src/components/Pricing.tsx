@@ -35,7 +35,7 @@ const tiers = [
 
 export function Pricing() {
   return (
-    <div className="relative py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-medium-blue via-dark-blue to-dark-blue sm:py-32">
+    <div className="relative py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">

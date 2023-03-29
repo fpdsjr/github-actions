@@ -7,7 +7,7 @@ import * as z from 'zod'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const currentDomain = 'https://new-cvb.vercel.app'
+const currentDomain = 'http://localhost:3000'
 
 const schema = z
   .object({
@@ -162,6 +162,7 @@ export const Login = () => {
             </div>
           </form>
 
+          {/* Providers */}
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

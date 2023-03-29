@@ -16,7 +16,7 @@ export function Navbar() {
   }
 
   const controlNavbar = () => {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 200) {
       setScroll(true)
     } else {
       setScroll(false)
@@ -35,12 +35,11 @@ export function Navbar() {
     <>
       <ModalLogin isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <Disclosure as="nav" className="transition-all block h-[4.5rem]">
+      <Disclosure as="nav" className="transition-all">
         {({ open }) => (
           <div
             className={classNames(
-              scroll ? 'scroll' : 'bg-dark-blue',
-              'w-full fixed z-50',
+              scroll ? 'scroll fixed z-50 w-full' : 'hidden',
             )}
           >
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
