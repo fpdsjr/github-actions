@@ -42,9 +42,9 @@ export const ModalLogin = ({ isOpen, setIsOpen }: LoginProps) => {
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all border-4 ">
                   <X
-                    size={22}
+                    size={24}
                     weight="bold"
-                    className="absolute p-1 right-2 top-2 bg-white rounded-full cursor-pointer transition-colors hover:bg-gray-200"
+                    className="absolute p-1 right-2 top-2 text-gray-400 rounded-full cursor-pointer transition-colors hover:text-gray-500 hover:bg-gray-100"
                     onClick={handleCloseModal}
                   />
                   <Login />
