@@ -107,5 +107,11 @@ export const useGetEvents = (
         ? 'withoutTeams'
         : 'withTeams',
     firstElement: getEvents?.[0],
+    typeSecondElement:
+      getEvents?.[1].processedData.title.includes('Circuito Brasileiro') ||
+      getEvents?.[1].processedData.title.includes('Campeonato Brasileiro')
+        ? 'withoutTeams'
+        : 'withTeams',
+    secondElement: getEvents?.[1],
   }
 }

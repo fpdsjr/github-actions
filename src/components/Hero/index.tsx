@@ -28,13 +28,11 @@ const images = [
 export function Hero() {
   const { data: videos, isFetching } = useChannel(6)
 
-  const { typeFirstElement, firstElement } = useGetEvents(
-    videos?.upcomming,
-    teams,
-  )
+  const { typeFirstElement, firstElement, typeSecondElement, secondElement } =
+    useGetEvents(videos?.upcomming, teams)
 
   return (
-    <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
+    <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)50%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
       <div className="h-[60vh] absolute z-30 bg-gradient-to-t from-dark-blue w-full lg:hidden"></div>
 
       <Swiper
@@ -55,23 +53,29 @@ export function Hero() {
               alt={img.alt}
               placeholder="blur"
               blurDataURL=""
-              className="w-full object-cover object-[50%,30%] h-[60vh] relative lg:absolute lg:h-screen lg:brightness-75"
+              className="w-full object-cover object-[50%,30%] h-[60vh] relative lg:absolute lg:h-screen lg:brightness-[0.6]"
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <div className="flex flex-col justify-center top-0 h-full z-40 lg:absolute lg:pl-[6%]">
+      <div className="hidden lg:flex lg:flex-col lg:justify-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
         {isFetching ? (
           <MotionBall />
         ) : (
-          <>
+          <div className="flex flex-col gap-4">
             {typeFirstElement === 'withoutTeams' ? (
-              <WithoutTeams firstElement={firstElement} />
+              <WithoutTeams element={firstElement} />
             ) : (
-              <WithTeams firstElement={firstElement} />
+              <WithTeams element={firstElement} />
             )}
-          </>
+
+            {typeSecondElement === 'withoutTeams' ? (
+              <WithoutTeams element={secondElement} />
+            ) : (
+              <WithTeams element={secondElement} />
+            )}
+          </div>
         )}
       </div>
     </section>

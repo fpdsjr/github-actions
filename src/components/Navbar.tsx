@@ -39,7 +39,8 @@ export function Navbar() {
         {({ open }) => (
           <div
             className={classNames(
-              scroll ? 'scroll fixed z-50 w-full' : 'hidden',
+              scroll ? 'scroll' : 'bg-gradient-to-b from-black/60',
+              'fixed z-50 w-full',
             )}
           >
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +59,6 @@ export function Navbar() {
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
-                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                       <button
                         onClick={handleOpenModal}
                         className="rounded-md px-3 py-2 text-sm font-medium text-white"
