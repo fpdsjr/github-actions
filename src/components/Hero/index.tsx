@@ -12,8 +12,8 @@ import { WithTeams } from './WithTeams'
 
 import b1 from '@/assets/aberto_m_jogo19_1811-1630.jpg'
 import b2 from '@/assets/aberto_f_final_1911-3697.jpg'
-// import b3 from '@/assets/banner-principal-1920x1080.jpg'
-// import b4 from '@/assets/banner-principal-1920x1080-2.jpg'
+import b3 from '@/assets/banner-principal-1920x1080-4.jpg'
+import b4 from '@/assets/banner-principal-1920x1080-3.jpg'
 
 import 'swiper/css'
 import 'swiper/css/effect-fade'
@@ -21,8 +21,8 @@ import 'swiper/css/effect-fade'
 const images = [
   { src: b1, alt: 'banner 1' },
   { src: b2, alt: 'banner 2' },
-  // { src: b3, alt: 'banner 3' },
-  // { src: b4, alt: 'banner 4' },
+  { src: b3, alt: 'banner 3' },
+  { src: b4, alt: 'banner 4' },
 ]
 
 export function Hero() {
