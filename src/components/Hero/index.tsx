@@ -66,12 +66,12 @@ export function Hero() {
         ))}
       </Swiper>
 
-      <div className="relative z-40 -mt-28 text-3xl text-center font-semibold uppercase pb-10 lg:hidden">
-        <h1 className="font-paralucentDemiBoldItalic lg:max-w-5xl lg:mx-auto">
-          Assista aos maiores campeonatos de vôlei do Brasil
+      <div className="relative z-40 -mt-40 text-center font-semibold pb-10 lg:hidden">
+        <h1 className="font-paralucentDemiBoldItalic uppercase text-4xl lg:max-w-5xl lg:mx-auto">
+          Canal Vôlei Brasil
         </h1>
         <p className="px-4 text-center text-[22px] font-medium tracking-tight mb-6 md:px-6 lg:px-0 lg:text-center">
-          Tudo em um só canal
+          Tudo de vôlei em um só lugar!
         </p>
         <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
           <Link
@@ -83,7 +83,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hidden lg:grid lg:grid-cols-[416px,1fr] lg:gap-8 lg:justify-center lg:items-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
+      <div className="hidden lg:w-full lg:grid lg:grid-cols-[416px,1fr] lg:gap-8 lg:justify-center lg:items-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
         <div className="flex flex-col gap-4 lg:rounded-xl lg:bg-indigo-300/20 lg:backdrop-blur-lg lg:p-4">
           <h2 className="text-xl text-center font-paralucentDemiBoldItalic">
             Próximos jogos
@@ -107,12 +107,12 @@ export function Hero() {
           )}
         </div>
 
-        <div className="text-3xl text-center font-semibold uppercase pb-10 lg:mx-auto lg:leading-snug lg:text-5xl">
-          <h1 className="font-paralucentDemiBoldItalic lg:max-w-5xl lg:mx-auto">
-            Assista aos maiores campeonatos de vôlei do Brasil
+        <div className="text-center justify-center flex flex-col place-items-center font-semibold uppercase pb-10 lg:mx-auto lg:leading-snug">
+          <h1 className="font-paralucentDemiBoldItalic text-3xl lg:max-w-5xl lg:mx-auto lg:text-7xl">
+            Canal Vôlei Brasil
           </h1>
           <p className="px-4 text-center text-[22px] font-medium tracking-tight mb-6 md:px-6 lg:px-0 lg:text-center">
-            Tudo em um só canal
+            Tudo de vôlei em um só lugar!
           </p>
           <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
             <Link

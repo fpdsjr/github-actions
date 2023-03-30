@@ -27,7 +27,7 @@ export function Categories() {
           src={bannerDesktop}
           alt=""
           fill
-          className="hidden sm:block sm:object-contain 2xl:object-cover"
+          className="hidden sm:block sm:object-cover"
         />
       </div>
     </div>

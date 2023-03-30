@@ -18,7 +18,7 @@ const tiers = [
     tag: 'Economize 4 meses (38,75% de desconto)',
     href: '#',
     price: 'R$ 7,90',
-    priceObs: '12 meses pelo preço de 8',
+    priceObs: '* Igual a R$ 94,80/ano',
     mostPopular: true,
     textButton: 'Assinar anual',
   },
@@ -51,19 +51,22 @@ export function Pricing() {
             <div
               key={tier.id}
               className={classNames(
-                tier.mostPopular ? 'bg-white/5 ring-2 ring-light-blue' : '',
+                tier.mostPopular ? 'bg-white/5 ring-2 ring-medium-blue' : '',
                 'rounded-lg py-8 px-6 flex flex-col justify-between items-center bg-gradient-to-b from-[rgba(255,255,255,0.12)0%] to-[rgba(255,255,255,0)100%]',
               )}
             >
-              <div className="flex items-center justify-between gap-x-4">
+              <div className="flex flex-col items-center justify-between gap-x-4">
                 <h3
                   id={tier.id}
                   className="text-2xl text-center font-bold leading-8 text-white"
                 >
                   {tier.name}
                 </h3>
+                <ul className="text-center my-4">
+                  <li>{tier.description}</li>
+                </ul>
                 {tier.mostPopular ? (
-                  <p className="rounded-full absolute left-1/2 -translate-x-1/2 -top-4 bg-light-blue py-1 px-4 uppercase font-bold leading-5 text-white">
+                  <p className="rounded-full absolute left-1/2 -translate-x-1/2 -top-4 bg-medium-blue py-1 px-4 uppercase font-bold leading-5 text-white">
                     Mais popular
                   </p>
                 ) : null}
@@ -78,7 +81,7 @@ export function Pricing() {
                 href={tier.href}
                 aria-describedby={tier.id}
                 className={classNames(
-                  'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-light-blue to-light-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+                  'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-medium-blue to-medium-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
                 )}
               >
                 {tier.textButton}
