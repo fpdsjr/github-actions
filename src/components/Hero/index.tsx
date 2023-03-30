@@ -108,9 +108,15 @@ export function Hero() {
         </div>
 
         <div className="text-center justify-center flex flex-col place-items-center font-semibold uppercase pb-10 lg:mx-auto lg:leading-snug">
-          <h1 className="font-paralucentDemiBoldItalic text-3xl lg:max-w-5xl lg:mx-auto lg:text-7xl">
-            Canal Vôlei Brasil
-          </h1>
+          <Image
+            src="/canal-volei-brasil.png"
+            alt="Logo Canal Vôlei Brasil"
+            width={400}
+            height={130}
+            placeholder="blur"
+            blurDataURL="/canal-volei-brasil.png"
+            className="block mb-4"
+          />
           <p className="px-4 text-center text-[22px] font-medium tracking-tight mb-6 md:px-6 lg:px-0 lg:text-center">
             Tudo de vôlei em um só lugar!
           </p>
