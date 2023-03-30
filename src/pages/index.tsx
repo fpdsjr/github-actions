@@ -23,12 +23,7 @@ export default function Home() {
 
       <Hero />
 
-      <div className="lg:z-30 lg:relative lg:-mt-60">
-        <div className="text-3xl text-center font-semibold font-paralucentDemiBoldItalic uppercase pb-10 bg-gradient-to-t from-dark-blue via-transparent lg:mx-auto lg:leading-snug lg:text-5xl">
-          <h1 className="lg:max-w-5xl lg:mx-auto">
-            Assista às maiores competições do voleibol do Brasil
-          </h1>
-        </div>
+      <div className="lg:z-30 lg:relative lg:-mt-20">
         <UpcomingBeach />
         <UpcomingCourt />
       </div>

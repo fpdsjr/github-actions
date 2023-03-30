@@ -67,7 +67,7 @@ export function Navbar() {
                       </button>
                       <Link
                         href="#"
-                        className="rounded-md px-3 py-2 text-sm font-medium bg-sky-300 text-gray-900 transition-colors hover:bg-medium-blue/60 hover:text-white"
+                        className="rounded-md px-3 py-2 text-sm font-medium bg-medium-blue text-white transition-colors hover:bg-medium-blue/60 hover:text-white"
                       >
                         Assine agora
                       </Link>

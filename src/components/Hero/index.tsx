@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { EffectFade, Navigation, Autoplay } from 'swiper'
@@ -32,7 +33,7 @@ export function Hero() {
     useGetEvents(videos?.upcomming, teams)
 
   return (
-    <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)50%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
+    <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)30%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
       <div className="h-[60vh] absolute z-30 bg-gradient-to-t from-dark-blue w-full lg:hidden"></div>
 
       <Swiper
@@ -59,24 +60,46 @@ export function Hero() {
         ))}
       </Swiper>
 
-      <div className="hidden lg:flex lg:flex-col lg:justify-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
-        {isFetching ? (
-          <MotionBall />
-        ) : (
-          <div className="flex flex-col gap-4">
-            {typeFirstElement === 'withoutTeams' ? (
-              <WithoutTeams element={firstElement} />
-            ) : (
-              <WithTeams element={firstElement} />
-            )}
+      <div className="hidden lg:grid lg:grid-cols-[416px,1fr] lg:gap-8 lg:justify-center lg:items-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
+        <div className="flex flex-col gap-4 lg:rounded-xl lg:bg-indigo-300/20 lg:backdrop-blur-lg lg:p-4">
+          <h2 className="text-xl text-center font-paralucentDemiBoldItalic">
+            Próximos jogos
+          </h2>
+          {isFetching ? (
+            <MotionBall />
+          ) : (
+            <>
+              {typeFirstElement === 'withoutTeams' ? (
+                <WithoutTeams element={firstElement} />
+              ) : (
+                <WithTeams element={firstElement} />
+              )}
 
-            {typeSecondElement === 'withoutTeams' ? (
-              <WithoutTeams element={secondElement} />
-            ) : (
-              <WithTeams element={secondElement} />
-            )}
+              {typeSecondElement === 'withoutTeams' ? (
+                <WithoutTeams element={secondElement} />
+              ) : (
+                <WithTeams element={secondElement} />
+              )}
+            </>
+          )}
+        </div>
+
+        <div className="text-3xl text-center font-semibold uppercase pb-10 lg:mx-auto lg:leading-snug lg:text-5xl">
+          <h1 className="font-paralucentDemiBoldItalic lg:max-w-5xl lg:mx-auto">
+            Assista aos maiores campeonatos de vôlei do Brasil
+          </h1>
+          <p className="px-4 text-center text-[22px] font-medium tracking-tight mb-6 md:px-6 lg:px-0 lg:text-center">
+            Tudo em um só canal
+          </p>
+          <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
+            <Link
+              href="#"
+              className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+            >
+              Quero assistir vôlei o ano todo!
+            </Link>
           </div>
-        )}
+        </div>
       </div>
     </section>
   )

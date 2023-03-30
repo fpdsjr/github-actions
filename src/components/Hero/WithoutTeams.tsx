@@ -11,7 +11,7 @@ interface WithoutTeamsProps {
 
 export function WithoutTeams({ element }: WithoutTeamsProps) {
   return (
-    <div className="flex flex-col items-center w-96 h-36 lg:items-start lg:rounded-xl lg:bg-black/30 lg:backdrop-blur-lg lg:p-4">
+    <div className="flex flex-col items-center w-96 h-36 lg:items-start lg:rounded-xl lg:bg-black/50 lg:backdrop-blur-lg lg:p-4">
       <span className="font-bebas tracking-wide text-2xl mt-1">
         {element?.processedData.title}
       </span>

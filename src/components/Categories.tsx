@@ -12,8 +12,8 @@ export function Categories() {
         </h2>
       </div>
       <p className="mx-auto mt-6 pb-16 max-w-xl text-center text-lg leading-8 text-gray-300 px-4 sm:px-6 md:px-8 lg:px-10">
-        Fique por dentro de tudo no streaming oficial da Confederação Brasileira
-        de Vôlei
+        Fique por dentro de tudo no canal oficial da Confederação Brasileira de
+        Vôlei
       </p>
 
       <div className="relative h-screen w-full py-24 flex justify-center px-4 sm:px-6 md:px-8 lg:px-10">
