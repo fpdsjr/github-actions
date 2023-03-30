@@ -22,8 +22,14 @@ export default function Home() {
       <Navbar />
 
       <Hero />
-      <UpcomingBeach />
-      <UpcomingCourt />
+
+      <div className="lg:z-30 lg:relative lg:-mt-52">
+        <h1 className="text-3xl text-center font-semibold font-paralucentDemiBoldItalic uppercase pb-10 bg-gradient-to-t from-dark-blue lg:text-5xl">
+          Assista às maiores competições
+        </h1>
+        <UpcomingBeach />
+        <UpcomingCourt />
+      </div>
       <Pricing />
       <Categories />
       <Devices />

@@ -17,8 +17,8 @@ export function UpcomingBeach() {
   const { getBeachEvents } = useGetEvents(videos?.upcomming, teams)
 
   return (
-    <section className="relative flex flex-col pb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
-      <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-3">
+    <section className="relative flex flex-col pb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue mb-4">
+      <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
         Próximos Jogos - Vôlei de Praia
       </h2>
 

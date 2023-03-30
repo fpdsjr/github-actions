@@ -11,12 +11,12 @@ interface WithoutTeamsProps {
 
 export function WithoutTeams({ firstElement }: WithoutTeamsProps) {
   return (
-    <div className="flex flex-col justify-center items-center lg:items-start">
+    <div className="flex flex-col justify-center items-center lg:items-start lg:rounded-xl lg:bg-black/30 lg:backdrop-blur-md lg:p-4">
       <span className="font-bebas text-2xl mt-1">
         {firstElement?.processedData.title}
       </span>
 
-      <div className="px-4 pt-2 flex flex-col justify-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:justify-start">
+      <div className="px-4 pt-2 flex flex-col justify-center items-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:items-start lg:justify-start">
         {firstElement?.description.includes('Campeonato Brasileiro') && (
           <Image
             src={'https://cbs.cbv.com.br/assets/images/logo-cbs.png'}
