@@ -4,23 +4,22 @@ import Image from 'next/image'
 
 import '@splidejs/react-splide/css'
 
-import img1 from '@/assets/aberto_f_final_1911-3697.jpg'
-import img2 from '@/assets/aberto_f_final_1911-3820.jpg'
-import img3 from '@/assets/top8_m_jogo15_1911-3499.jpg'
+import praia1 from '@/assets/banners/praia-1.png'
+import praia2 from '@/assets/banners/praia-2-espelhada.png'
+import praia3 from '@/assets/banners/praia-3.png'
+import praia4 from '@/assets/banners/praia-4.png'
+import quadra1 from '@/assets/banners/quadra-1.png'
+import quadra3 from '@/assets/banners/quadra-3.png'
+import quadra4 from '@/assets/banners/quadra-4.png'
 
 const assets = [
-  {
-    id: 1,
-    src: img1,
-  },
-  {
-    id: 2,
-    src: img2,
-  },
-  {
-    id: 3,
-    src: img3,
-  },
+  { id: 1, src: praia1 },
+  { id: 2, src: quadra1 },
+  { id: 3, src: praia2 },
+  { id: 4, src: praia3 },
+  { id: 5, src: quadra3 },
+  { id: 6, src: praia4 },
+  { id: 7, src: quadra4 },
 ]
 
 export const Pictures = () => {
