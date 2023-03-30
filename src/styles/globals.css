@@ -22,7 +22,7 @@ html {
 }
 
 .splide__arrow {
-  @apply hidden lg:flex lg:py-10 lg:rounded-none lg:bg-gray-300/70 !important;
+  @apply hidden lg:flex lg:py-10 lg:rounded-none lg:bg-blue-200/30 !important;
 }
 
 .splide__arrow--prev {
@@ -34,7 +34,7 @@ html {
 }
 
 .splide__pagination {
-  @apply flex justify-center gap-6 !important;
+  @apply hidden !important;
 }
 
 .splide__pagination__page {

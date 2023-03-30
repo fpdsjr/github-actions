@@ -24,10 +24,10 @@ export default function Home() {
       <Hero />
       <UpcomingBeach />
       <UpcomingCourt />
-      <Categories />
       <Pricing />
-      <Pictures />
+      <Categories />
       <Devices />
+      <Pictures />
 
       <Faq />
       <Footer />
