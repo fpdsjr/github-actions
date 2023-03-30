@@ -28,12 +28,15 @@ export interface IUpcoming {
   start_time: string
   processedData: {
     title: string
-    homeTeam: string
-    awayTeam: string
-    homeTeamLogo: string
-    awayTeamLogo: string
-    homeTeamShort: string
-    awayTeamShort: string
+    homeTeam: string | undefined
+    awayTeam: string | undefined
+    homeTeamLogo: string | undefined
+    awayTeamLogo: string | undefined
+    homeTeamShort: string | undefined
+    awayTeamShort: string | undefined
+    court: string | undefined
+    step: string | undefined
+    day: string | undefined
   }
 }
 
