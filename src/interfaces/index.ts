@@ -47,3 +47,13 @@ export interface ITeams {
   logo: string
   nameFromAPI: string
 }
+
+export interface IInputRegister {
+  email: string
+  password: string
+  confirmPassword: string
+  fullName: string
+  birthDate: Date
+  gender: 'masculino' | 'feminino'
+  agreeTerms: boolean
+}
