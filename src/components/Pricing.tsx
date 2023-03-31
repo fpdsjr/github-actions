@@ -15,8 +15,9 @@ const tiers = [
     id: 'yearly',
     name: 'Novo Canal Vôlei Brasil',
     description: 'ANUAL - em até 12x sem juros',
-    tag: 'Economize 4 meses (38,75% de desconto)',
+    tag: 'Economize 4 meses',
     href: '#',
+    prefixPrice: '12 x',
     price: 'R$ 7,90',
     priceObs: '* Igual a R$ 94,80/ano',
     mostPopular: true,
@@ -64,6 +65,7 @@ export function Pricing() {
                 </h3>
                 <ul className="text-center my-4">
                   <li>{tier.description}</li>
+                  <li className="mt-4 font-medium">{tier.tag}</li>
                 </ul>
                 {tier.mostPopular ? (
                   <p className="rounded-full absolute left-1/2 -translate-x-1/2 -top-4 bg-medium-blue py-1 px-4 uppercase font-bold leading-5 text-white">
@@ -72,6 +74,12 @@ export function Pricing() {
                 ) : null}
               </div>
               <p className="mt-6 flex items-baseline gap-x-1">
+                {/* {tier.prefixPrice && (
+                  <span className="text-xs font-medium">
+                    {tier.prefixPrice}
+                  </span>
+                )} */}
+
                 <span className="text-4xl font-extrabold tracking-tight text-white">
                   {tier.price}
                 </span>
