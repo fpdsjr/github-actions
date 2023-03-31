@@ -47,13 +47,13 @@ export function UpcomingCourt() {
         <SplideTrack>
           {getCourtEvents?.map((match) => (
             <SplideSlide key={match?.id} className="rounded-lg">
-              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-b from-[rgba(255,255,255,0.13)0%] to-[rgba(255,255,255,0.5)100%] transition">
+              <div className="min-h-full py-0 px-6 rounded-lg bg-gradient-to-b from-[rgb(87,122,163)0%] via-[rgba(209,226,237,0.8)50%] to-[rgba(223,229,233,0.929)100%] transition">
                 <div className="flex justify-between items-center py-3 gap-2 border-b border-medium-yellow/70">
                   {match?.processedData.title.includes('Feminina') && (
-                    <Image src={SLFem} alt="" height={34} className="invert" />
+                    <Image src={SLFem} alt="" width={60} height={37} />
                   )}
                   {match?.processedData.title.includes('Masculina') && (
-                    <Image src={SLMas} alt="" height={34} className="invert" />
+                    <Image src={SLMas} alt="" width={60} height={37} />
                   )}
                   {match?.processedData.title.includes(
                     'Campeonato Brasileiro',
@@ -95,7 +95,7 @@ export function UpcomingCourt() {
                       src="https://cbs.cbv.com.br/assets/images/logo-cbs.png"
                       alt=""
                       width={200}
-                      height={200}
+                      height={69}
                     />
                     <span className="font-bebas text-center text-2xl text-medium-yellow/90 mt-3">
                       {match?.processedData.court}
@@ -115,12 +115,12 @@ export function UpcomingCourt() {
                         width={100}
                         height={100}
                       />
-                      <span className="font-bebas text-center text-lg text-white">
+                      <span className="font-bebas text-center text-lg text-[#216ba5]">
                         {match?.processedData.homeTeam}
                       </span>
                     </div>
 
-                    <span className="text-bold font-bebas text-2xl self-center text-medium-yellow/90">
+                    <span className="text-bold font-bebas text-2xl self-center text-medium-yellow">
                       VS
                     </span>
 
@@ -131,7 +131,7 @@ export function UpcomingCourt() {
                         width={100}
                         height={100}
                       />
-                      <span className="font-bebas text-center text-lg text-white">
+                      <span className="font-bebas text-center text-lg text-[#216ba5]">
                         {match?.processedData.awayTeam}
                       </span>
                     </div>
