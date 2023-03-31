@@ -10,8 +10,18 @@ import { Pictures } from '@/components/Pictures'
 import { UpcomingBeach } from '@/components/UpcomingBeach'
 import { Faq } from '@/components/Faq'
 import { UpcomingCourt } from '@/components/UpcomingCourt'
+import { teams } from '@/data'
+import { useChannel } from '@/hooks/useStates'
+import { useGetEvents } from '@/hooks/useGetEvents'
 
 export default function Home() {
+  const { data: videos } = useChannel(6)
+
+  const { getBeachEvents, getCourtEvents } = useGetEvents(
+    videos?.upcomming,
+    teams,
+  )
+
   return (
     <>
       <Head>
@@ -24,9 +34,10 @@ export default function Home() {
       <Hero />
 
       <div className="lg:z-30 lg:relative lg:-mt-20">
-        <UpcomingBeach />
-        <UpcomingCourt />
+        {getBeachEvents && getBeachEvents?.length > 0 && <UpcomingBeach />}
+        {getCourtEvents && getCourtEvents?.length > 0 && <UpcomingCourt />}
       </div>
+
       <Pricing />
       <Categories />
       <Devices />
