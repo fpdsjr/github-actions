@@ -12,7 +12,7 @@ interface WithoutTeamsProps {
 export function WithoutTeams({ element }: WithoutTeamsProps) {
   return (
     <div className="flex flex-col items-center w-96 h-36 lg:items-start lg:rounded-xl lg:bg-black/50 lg:backdrop-blur-lg lg:p-4">
-      <span className="font-bebas tracking-wide text-2xl mt-1">
+      <span className="font-bebas tracking-wide text-2xl">
         {element?.processedData.title}
       </span>
 
@@ -69,7 +69,7 @@ export function WithoutTeams({ element }: WithoutTeamsProps) {
 
           <span className="font-bebas text-xl">-</span>
 
-          <span className="font-bebas text-xl">
+          <span className="font-bebas tracking-wide text-xl">
             {element &&
               formatInTimeZone(
                 new Date(element?.start_time),
