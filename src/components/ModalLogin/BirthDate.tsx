@@ -44,11 +44,11 @@ interface BirthDateProps {
 export const BirthDate = ({ errors, control }: BirthDateProps) => {
   return (
     <fieldset className="flex flex-col items-start mb-4">
-      <Label text="Data de Nascimento" htmlFor="birthDate" />
+      <Label text="Data de Nascimento" htmlFor="birth_date" />
 
       <Controller
         control={control}
-        name="birthDate"
+        name="birth_date"
         render={({ field: { onChange, onBlur, value } }) => (
           <DatePicker
             className="w-full mt-2 mb-1 border border-gray-300 bg-white text-gray-800 pl-2 py-1.5 text-sm rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-xs focus:ring-2 focus:outline-0 hover:bg-gray-50 focus:ring-blue-300 focus:ring-yellow-400/95"
@@ -113,8 +113,10 @@ export const BirthDate = ({ errors, control }: BirthDateProps) => {
           />
         )}
       />
-      {errors.birthDate && (
-        <span className="text-red-600 text-xs">{errors.birthDate.message}</span>
+      {errors.birth_date && (
+        <span className="text-red-600 text-xs">
+          {errors.birth_date.message}
+        </span>
       )}
     </fieldset>
   )
