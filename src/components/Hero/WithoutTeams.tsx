@@ -13,7 +13,7 @@ export function WithoutTeams({ element }: WithoutTeamsProps) {
   return (
     <div className="flex flex-col items-center w-96 h-36 lg:items-start lg:rounded-xl lg:bg-black/50 lg:backdrop-blur-lg lg:p-4">
       <span className="font-bebas tracking-wide text-2xl">
-        {element?.processedData.title}
+        {element?.title}
       </span>
 
       <div className="px-4 pt-2 flex flex-col justify-center items-center gap-2 text-4xl font-bold tracking-tight mb-3 max-w-[15ch] md:px-6 md:max-w-none lg:px-0 lg:items-start lg:justify-start">
@@ -38,22 +38,22 @@ export function WithoutTeams({ element }: WithoutTeamsProps) {
         )}
 
         <div className="flex gap-2 items-center">
-          {element?.processedData.court && (
+          {element?.court && (
             <span className="text-medium-yellow/90 text-xl">
-              {element?.processedData.court}
+              {element?.court}
             </span>
           )}
 
-          {element?.processedData.step && (
+          {element?.step && (
             <>
               <span className="text-lg font-normal">|</span>
-              <span className="text-xl">{element?.processedData.step}</span>
+              <span className="text-xl">{element?.step}</span>
             </>
           )}
         </div>
       </div>
       <div className="px-4 flex flex-col items-center gap-2 md:px-6 lg:px-0 lg:flex-row">
-        <span className="font-bebas text-xl">{element?.processedData.day}</span>
+        <span className="font-bebas text-xl">{element?.day}</span>
 
         <span className="hidden lg:flex lg:font-bebas lg:text-base">|</span>
 

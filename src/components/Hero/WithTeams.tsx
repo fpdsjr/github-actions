@@ -11,12 +11,12 @@ export function WithTeams({ element }: WithTeamsProps) {
   return (
     <div className="lg:rounded-xl lg:p-4 lg:bg-black/50 lg:backdrop-blur-lg">
       <span className="font-bebas tracking-wide text-2xl">
-        {element?.processedData.title}
+        {element?.title}
       </span>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 font-bold tracking-tight md:max-w-none">
           <Image
-            src={element?.processedData.homeTeamLogo ?? ''}
+            src={element?.homeTeamLogo ?? ''}
             alt=""
             width={100}
             height={100}
@@ -25,7 +25,7 @@ export function WithTeams({ element }: WithTeamsProps) {
             VS
           </span>
           <Image
-            src={element?.processedData.awayTeamLogo ?? ''}
+            src={element?.awayTeamLogo ?? ''}
             alt=""
             width={100}
             height={100}

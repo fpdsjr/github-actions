@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'phosphor-react'
 import { Fragment } from 'react'
-import { CardLogin } from './CardLogin'
+import { Card } from './Card'
 
 interface LoginProps {
   isOpen: boolean
@@ -47,7 +47,7 @@ export const ModalLogin = ({ isOpen, setIsOpen }: LoginProps) => {
                     className="absolute p-1 right-2 top-2 text-gray-400 rounded-full cursor-pointer transition-colors hover:text-gray-500 hover:bg-gray-100"
                     onClick={handleCloseModal}
                   />
-                  <CardLogin />
+                  <Card />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

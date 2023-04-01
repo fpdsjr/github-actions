@@ -3,11 +3,11 @@ import { useMemo } from 'react'
 import { IEvents, ITeams } from '@/interfaces'
 
 export const useGetEvents = (
-  upcoming: IEvents[] | undefined,
+  events: IEvents[] | undefined,
   teams: ITeams[],
 ) => {
   const getEvents = useMemo(() => {
-    return upcoming
+    return events
       ?.filter((events) => !events.description.includes('Acompanhe'))
       .filter(
         (matches) =>
@@ -17,42 +17,29 @@ export const useGetEvents = (
       )
       .map((video) => {
         if (video.description.includes('Circuito Brasileiro')) {
-          const processedData = {
+          const newVideo = {
+            type: 'beach',
+            id: video.id,
+            start_time: video.start_time,
+            preview_url: video.preview_url,
+            description: video.description,
             title: video.description.split('-')[0].trim(),
             step: video.description.split('-')[1].trim(),
             day: video.description.split('-')[2].trim(),
             court: video.description.split('-')[3].trim(),
-            homeTeam: undefined,
-            homeTeamLogo: undefined,
-            homeTeamShort: undefined,
-            awayTeam: undefined,
-            awayTeamLogo: undefined,
-            awayTeamShort: undefined,
-          }
-
-          const newVideo = {
-            ...video,
-            processedData,
           }
 
           return newVideo
         } else if (video.description.includes('Campeonato Brasileiro')) {
-          const processedData = {
+          const newVideo = {
+            type: 'court',
+            id: video.id,
+            start_time: video.start_time,
+            preview_url: video.preview_url,
+            description: video.description,
             title: video.description.split('-')[0].trim(),
             day: video.description.split('-')[1].trim(),
             court: video.description.split('-')[2].trim(),
-            step: undefined,
-            homeTeam: undefined,
-            homeTeamLogo: undefined,
-            homeTeamShort: undefined,
-            awayTeam: undefined,
-            awayTeamLogo: undefined,
-            awayTeamShort: undefined,
-          }
-
-          const newVideo = {
-            ...video,
-            processedData,
           }
 
           return newVideo
@@ -75,24 +62,24 @@ export const useGetEvents = (
             (team) => team.nameFromAPI === awayTeam,
           )
           const newVideo = {
-            ...video,
-            processedData: {
-              title,
-              homeTeam: findHomeTeamLogo?.name,
-              homeTeamLogo: findHomeTeamLogo?.logo,
-              homeTeamShort: findHomeTeamLogo?.shortName,
-              awayTeam: findAwayTeamLogo?.name,
-              awayTeamLogo: findAwayTeamLogo?.logo,
-              awayTeamShort: findAwayTeamLogo?.shortName,
-              step: undefined,
-              day: undefined,
-              court: undefined,
-            },
+            type: 'court',
+            id: video.id,
+            start_time: video.start_time,
+            preview_url: video.preview_url,
+            description: video.description,
+            title,
+            homeTeam: findHomeTeamLogo?.name,
+            homeTeamLogo: findHomeTeamLogo?.logo,
+            homeTeamShort: findHomeTeamLogo?.shortName,
+            awayTeam: findAwayTeamLogo?.name,
+            awayTeamLogo: findAwayTeamLogo?.logo,
+            awayTeamShort: findAwayTeamLogo?.shortName,
           }
+
           return newVideo
         }
       })
-  }, [upcoming, teams])
+  }, [events, teams])
 
   return {
     getBeachEvents: getEvents?.filter((event) =>
@@ -102,14 +89,14 @@ export const useGetEvents = (
       (event) => !event.description.includes('Circuito Brasileiro'),
     ),
     typeFirstElement:
-      getEvents?.[0].processedData.title.includes('Circuito Brasileiro') ||
-      getEvents?.[0].processedData.title.includes('Campeonato Brasileiro')
+      getEvents?.[0].title.includes('Circuito Brasileiro') ||
+      getEvents?.[0].title.includes('Campeonato Brasileiro')
         ? 'withoutTeams'
         : 'withTeams',
     firstElement: getEvents?.[0],
     typeSecondElement:
-      getEvents?.[1].processedData.title.includes('Circuito Brasileiro') ||
-      getEvents?.[1].processedData.title.includes('Campeonato Brasileiro')
+      getEvents?.[1].title.includes('Circuito Brasileiro') ||
+      getEvents?.[1].title.includes('Campeonato Brasileiro')
         ? 'withoutTeams'
         : 'withTeams',
     secondElement: getEvents?.[1],

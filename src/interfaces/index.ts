@@ -1,10 +1,7 @@
 export interface IEvents {
   id: number
   description: string
-  is_live: boolean
-  video_is_live: boolean
   preview_url: string
-  slug: string
   start_time: string
 }
 
@@ -19,25 +16,21 @@ export interface ITvChannel {
 }
 
 export interface IUpcoming {
+  type: string
   id: number
   description: string
-  is_live: boolean
-  video_is_live: boolean
   preview_url: string
-  slug: string
   start_time: string
-  processedData: {
-    title: string
-    homeTeam: string | undefined
-    awayTeam: string | undefined
-    homeTeamLogo: string | undefined
-    awayTeamLogo: string | undefined
-    homeTeamShort: string | undefined
-    awayTeamShort: string | undefined
-    court: string | undefined
-    step: string | undefined
-    day: string | undefined
-  }
+  title: string
+  homeTeam?: string
+  awayTeam?: string
+  homeTeamLogo?: string
+  awayTeamLogo?: string
+  homeTeamShort?: string
+  awayTeamShort?: string
+  court?: string
+  step?: string
+  day?: string
 }
 
 export interface ITeams {

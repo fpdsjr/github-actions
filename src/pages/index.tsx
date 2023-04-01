@@ -1,5 +1,8 @@
 import Head from 'next/head'
 
+import { teams } from '@/data'
+import { useChannel } from '@/hooks/useStates'
+import { useGetEvents } from '@/hooks/useGetEvents'
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
 import { Pricing } from '@/components/Pricing'
@@ -7,20 +10,21 @@ import { Categories } from '@/components/Categories'
 import { Devices } from '@/components/Devices'
 import { Footer } from '@/components/Footer'
 import { Pictures } from '@/components/Pictures'
-import { UpcomingBeach } from '@/components/UpcomingBeach'
 import { Faq } from '@/components/Faq'
-import { UpcomingCourt } from '@/components/UpcomingCourt'
-import { teams } from '@/data'
-import { useChannel } from '@/hooks/useStates'
-import { useGetEvents } from '@/hooks/useGetEvents'
+import { UpcomingBeach } from '@/components/Events/UpcomingBeach'
+import { UpcomingCourt } from '@/components/Events/UpcomingCourt'
+import { Live } from '@/components/Events/Live'
 
 export default function Home() {
   const { data: videos } = useChannel(6)
 
-  const { getBeachEvents, getCourtEvents } = useGetEvents(
-    videos?.upcomming,
+  const { getBeachEvents: liveBeach, getCourtEvents: liveCourt } = useGetEvents(
+    videos?.lives,
     teams,
   )
+
+  const { getBeachEvents: upcomingBeach, getCourtEvents: upcomingCourt } =
+    useGetEvents(videos?.upcomming, teams)
 
   return (
     <>
@@ -33,9 +37,10 @@ export default function Home() {
 
       <Hero />
 
-      <div className="lg:z-30 lg:relative lg:-mt-20">
-        {getBeachEvents && getBeachEvents?.length > 0 && <UpcomingBeach />}
-        {getCourtEvents && getCourtEvents?.length > 0 && <UpcomingCourt />}
+      <div className=" flex flex-col gap-6 lg:z-30 lg:relative lg:-mt-20">
+        {(liveBeach?.length || liveCourt?.length) && <Live />}
+        {upcomingBeach?.length && <UpcomingBeach />}
+        {upcomingCourt?.length && <UpcomingCourt />}
       </div>
 
       <Pricing />
