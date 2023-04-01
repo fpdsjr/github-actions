@@ -45,8 +45,17 @@ export interface IInputRegister {
   email: string
   password: string
   confirmPassword: string
-  fullName: string
-  birthDate: Date
-  gender: 'masculino' | 'feminino'
+  name: string
+  birth_date: Date
+  gender: 'male' | 'female'
   agreeTerms: boolean
+}
+
+export interface ILoginData {
+  name: string
+  email: string
+  password: string
+  channels: string[]
+  gender: string
+  birth_date: Date
 }

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { teams } from '@/data'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
+import { EChannel } from '@/dictionary'
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
 import { Pricing } from '@/components/Pricing'
@@ -16,7 +17,7 @@ import { UpcomingCourt } from '@/components/Events/UpcomingCourt'
 import { Live } from '@/components/Events/Live'
 
 export default function Home() {
-  const { data: videos } = useChannel(6)
+  const { data: videos } = useChannel(EChannel.VoleiBrasil)
 
   const { getBeachEvents: liveBeach, getCourtEvents: liveCourt } = useGetEvents(
     videos?.lives,

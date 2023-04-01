@@ -7,6 +7,7 @@ import { EffectFade, Navigation, Autoplay } from 'swiper'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
+import { EChannel } from '@/dictionary'
 import { MotionBall } from './MotionBall'
 import { WithoutTeams } from './WithoutTeams'
 import { WithTeams } from './WithTeams'
@@ -33,7 +34,7 @@ const images = [
 ]
 
 export function Hero() {
-  const { data: videos, isFetching } = useChannel(6)
+  const { data: videos, isFetching } = useChannel(EChannel.VoleiBrasil)
 
   const { typeFirstElement, firstElement, typeSecondElement, secondElement } =
     useGetEvents(videos?.upcomming, teams)

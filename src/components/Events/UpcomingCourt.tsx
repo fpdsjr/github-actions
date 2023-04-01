@@ -3,12 +3,13 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
+import { EChannel } from '@/dictionary'
 import { CourtCard } from './CourtCard'
 
 import '@splidejs/react-splide/css'
 
 export function UpcomingCourt() {
-  const { data: videos } = useChannel(6)
+  const { data: videos } = useChannel(EChannel.VoleiBrasil)
 
   const { getCourtEvents } = useGetEvents(videos?.upcomming, teams)
 

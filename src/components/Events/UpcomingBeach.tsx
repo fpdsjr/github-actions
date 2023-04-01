@@ -3,13 +3,14 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
+import { EChannel } from '@/dictionary'
 
 import '@splidejs/react-splide/css'
 
 import { BeachCard } from './BeachCard'
 
 export function UpcomingBeach() {
-  const { data: videos } = useChannel(6)
+  const { data: videos } = useChannel(EChannel.VoleiBrasil)
 
   const { getBeachEvents } = useGetEvents(videos?.upcomming, teams)
 
