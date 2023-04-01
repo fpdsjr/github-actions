@@ -90,7 +90,6 @@ export function Navbar() {
 
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pt-2 pb-3">
-                {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                 <Disclosure.Button
                   as="button"
                   onClick={handleOpenModal}
