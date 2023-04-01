@@ -51,12 +51,12 @@ export const BirthDate = ({ errors, control }: BirthDateProps) => {
         name="birthDate"
         render={({ field: { onChange, onBlur, value } }) => (
           <DatePicker
-            className="w-full mt-2 mb-1 border border-gray-300 shadow-sm focus:ring-2 focus:outline-0 bg-white hover:bg-gray-50 focus:ring-blue-300 text-gray-700 pl-4 py-2 text-sm font-medium rounded-md placeholder:text-gray-400 placeholder:text-sm pr-10 focus:ring-yellow-400/95"
+            className="w-full mt-2 mb-1 border border-gray-300 bg-white text-gray-800 pl-2 py-1.5 text-sm rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-xs focus:ring-2 focus:outline-0 hover:bg-gray-50 focus:ring-blue-300 focus:ring-yellow-400/95"
             onChange={onChange}
             onBlur={onBlur}
             selected={value}
             dateFormat={'dd/MM/yyyy'}
-            placeholderText="dd/mm/aaaa"
+            placeholderText="DD/MM/AAAA"
             maxDate={new Date()}
             renderCustomHeader={({
               date,

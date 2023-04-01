@@ -1,6 +1,11 @@
 import Image from 'next/image'
-// import { Login } from './Login'
+import { Tab } from '@headlessui/react'
+
+import { Login } from './Login'
 import { Register } from './Register'
+import { classNames } from '@/utils'
+
+const tabs = [{ name: 'Login' }, { name: 'Cadastro' }]
 
 export const CardLogin = () => {
   return (
@@ -17,15 +22,38 @@ export const CardLogin = () => {
           Bem-vindo!
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Siga o passo a passo para realizar o seu login.
+          Siga o passo a passo para realizar o seu login ou o seu cadastro.
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          {/* <Login /> */}
-          <Register />
-        </div>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
+        <Tab.Group>
+          <Tab.List className="flex h-14 px-3 pt-3 space-x-1 shadow rounded-t-lg bg-light-blue">
+            {tabs.map((tab) => (
+              <Tab
+                key={tab.name}
+                className={({ selected }) =>
+                  classNames(
+                    'w-full h-full font-medium leading-5 focus:outline-none',
+                    selected
+                      ? 'text-light-blue bg-white rounded-t-lg'
+                      : 'text-gray-100 hover:text-gray-200',
+                  )
+                }
+              >
+                {tab.name}
+              </Tab>
+            ))}
+          </Tab.List>
+          <Tab.Panels className="bg-white py-8 px-4 shadow sm:rounded-b-lg sm:px-6">
+            <Tab.Panel>
+              <Login />
+            </Tab.Panel>
+            <Tab.Panel>
+              <Register />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
       </div>
     </div>
   )

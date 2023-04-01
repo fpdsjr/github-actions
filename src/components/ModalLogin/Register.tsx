@@ -29,9 +29,13 @@ const schema = z
     confirmPassword: z
       .string()
       .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
-    agreeTerms: z.boolean().refine((value) => value, {
-      message: 'Você deve aceitar os termos de uso',
-    }),
+    agreeTerms: z
+      .boolean({
+        errorMap: () => ({ message: 'Você deve aceitar os termos de uso' }),
+      })
+      .refine((value) => value, {
+        message: 'Você deve aceitar os termos de uso',
+      }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
@@ -209,7 +213,7 @@ export function Register() {
             name="agreeTerms"
             control={control}
             render={({ field }) => (
-              <div className="flex items-center">
+              <div className="flex items-center mb-2">
                 <input
                   id="agreeTerms"
                   type="checkbox"

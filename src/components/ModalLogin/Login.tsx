@@ -6,6 +6,8 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
 
+import { Label } from '../Label'
+
 const schema = z.object({
   email: z
     .string()
@@ -47,12 +49,8 @@ export function Login() {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            E-mail
-          </label>
+          <Label htmlFor="email" text="E-mail" />
+
           <div className="mt-2">
             <input
               id="email"
@@ -69,12 +67,8 @@ export function Login() {
         </div>
 
         <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Senha
-          </label>
+          <Label htmlFor="password" text="Senha" />
+
           <div className="mt-2 border-0 py-1.5 px-2 flex rounded-md ring-1 ring-inset ring-gray-300 shadow-sm focus:ring-2 focus:ring-inset focus:ring-light-blue">
             <input
               id="password"
@@ -116,12 +110,12 @@ export function Login() {
           </div>
 
           <div className="text-sm">
-            <a
+            <Link
               href="#"
               className="font-medium text-light-blue hover:text-light-blue/80"
             >
               Esqueceu sua senha?
-            </a>
+            </Link>
           </div>
         </div>
 

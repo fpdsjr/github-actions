@@ -97,11 +97,11 @@ export function UpcomingCourt() {
                       width={200}
                       height={69}
                     />
-                    <span className="font-bebas text-center text-2xl text-medium-yellow/90 mt-3">
+                    <span className="font-bebas text-center text-2xl text-[#216ba5] mt-3">
                       {match?.processedData.court}
                     </span>
                     <div className="flex gap-2">
-                      <span className="font-bebas text-center text-lg text-white">
+                      <span className="font-bebas text-center text-2xl text-white">
                         {match?.processedData.day}
                       </span>
                     </div>
@@ -120,7 +120,7 @@ export function UpcomingCourt() {
                       </span>
                     </div>
 
-                    <span className="text-bold font-bebas text-2xl self-center text-medium-yellow">
+                    <span className="text-bold font-bebas text-3xl self-center text-medium-yellow">
                       VS
                     </span>
 
