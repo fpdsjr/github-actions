@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
 
 import { Label } from '../Label'
+import { api } from '@/lib'
+import { useMutation } from '@tanstack/react-query'
 
 const schema = z.object({
   email: z
@@ -23,7 +25,7 @@ type Inputs = z.infer<typeof schema>
 const currentDomain = 'http://localhost:3000'
 
 export function Login() {
-  const router = useRouter()
+  // const router = useRouter()
 
   const [showPassword, setShowPassword] = useState(false)
 
@@ -35,10 +37,38 @@ export function Login() {
     resolver: zodResolver(schema),
   })
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    router.push(
-      `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
-    )
+  const fetchLogin = async (body: { email: string; password: string }) => {
+    const { data } = await api.post(`/sessions`, body, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return data
+  }
+
+  const mutation = useMutation(fetchLogin, {
+    onSuccess: (data) => {
+      console.log(data)
+      // setMessage(data)
+    },
+    onError: (e: any) => {
+      alert(e.response.data.message[0])
+      // setMessage(e.response.data.message[0])
+    },
+  })
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const newData = {
+      email: data.email,
+      password: data.password,
+    }
+    // router.push(
+    //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
+    // )
+
+    console.log(newData)
+
+    mutation.mutate(newData)
   }
 
   const togglePasswordVisibility = () => {

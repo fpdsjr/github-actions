@@ -72,7 +72,7 @@ export function Register() {
     resolver: zodResolver(schema),
   })
 
-  const fetchLogin = async (body: { user: ILoginData }) => {
+  const fetchSignUp = async (body: { user: ILoginData }) => {
     const { data } = await api.post(`/users`, body, {
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export function Register() {
     return data
   }
 
-  const mutation = useMutation(fetchLogin, {
+  const mutation = useMutation(fetchSignUp, {
     onSuccess: (data) => {
       console.log(data)
       setMessage(data)
