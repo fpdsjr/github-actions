@@ -96,9 +96,9 @@ export function Hero() {
                 {firstTwoEvents?.map((event) => {
                   return event?.description.includes('Circuito Brasileiro') ||
                     event?.description.includes('Campeonato Brasileiro') ? (
-                    <WithoutTeams element={event} />
+                    <WithoutTeams key={event.id} element={event} />
                   ) : (
-                    <WithTeams element={event} />
+                    <WithTeams key={event.id} element={event} />
                   )
                 })}
               </>
