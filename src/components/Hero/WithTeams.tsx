@@ -9,7 +9,7 @@ interface WithTeamsProps {
 
 export function WithTeams({ element }: WithTeamsProps) {
   return (
-    <div className="lg:rounded-xl lg:p-4 lg:bg-black/50 lg:backdrop-blur-lg">
+    <div className="lg:rounded-xl lg:p-4 lg:bg-black/0 lg:backdrop-blur-lg">
       <span className="font-bebas tracking-wide text-2xl">
         {element?.title}
       </span>

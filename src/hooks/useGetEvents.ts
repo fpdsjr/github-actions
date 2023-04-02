@@ -8,49 +8,49 @@ export const useGetEvents = (
 ) => {
   const getEvents = useMemo(() => {
     return events
-      ?.filter((events) => !events.description.includes('Acompanhe'))
+      ?.filter((events) => !events?.description.includes('Acompanhe'))
       .filter(
         (matches) =>
-          matches.description.includes('Circuito Brasileiro') ||
-          matches.description.includes('Campeonato Brasileiro') ||
-          matches.description.includes('Superliga 1XBET'),
+          matches?.description.includes('Circuito Brasileiro') ||
+          matches?.description.includes('Campeonato Brasileiro') ||
+          matches?.description.includes('Superliga 1XBET'),
       )
       .map((video) => {
-        if (video.description.includes('Circuito Brasileiro')) {
+        if (video?.description.includes('Circuito Brasileiro')) {
           const newVideo = {
             type: 'beach',
-            id: video.id,
-            start_time: video.start_time,
-            preview_url: video.preview_url,
-            description: video.description,
-            title: video.description.split('-')[0].trim(),
-            step: video.description.split('-')[1].trim(),
-            day: video.description.split('-')[2].trim(),
-            court: video.description.split('-')[3].trim(),
+            id: video?.id,
+            start_time: video?.start_time,
+            preview_url: video?.preview_url,
+            description: video?.description,
+            title: video?.description.split('-')[0].trim(),
+            step: video?.description.split('-')[1].trim(),
+            day: video?.description.split('-')[2].trim(),
+            court: video?.description.split('-')[3].trim(),
           }
 
           return newVideo
-        } else if (video.description.includes('Campeonato Brasileiro')) {
+        } else if (video?.description.includes('Campeonato Brasileiro')) {
           const newVideo = {
             type: 'court',
-            id: video.id,
-            start_time: video.start_time,
-            preview_url: video.preview_url,
-            description: video.description,
-            title: video.description.split('-')[0].trim(),
-            day: video.description.split('-')[1].trim(),
-            court: video.description.split('-')[2].trim(),
+            id: video?.id,
+            start_time: video?.start_time,
+            preview_url: video?.preview_url,
+            description: video?.description,
+            title: video?.description.split('-')[0].trim(),
+            day: video?.description.split('-')[1].trim(),
+            court: video?.description.split('-')[2].trim(),
           }
 
           return newVideo
         } else {
-          const title = video.description.split(':')[0].trim()
-          const homeTeam = video.description
+          const title = video?.description.split(':')[0].trim()
+          const homeTeam = video?.description
             .split(':')[1]
             ?.split('-')[0]
             ?.split(' x ')[0]
             .trim()
-          const awayTeam = video.description
+          const awayTeam = video?.description
             .split(':')[1]
             ?.split('-')[0]
             ?.split(' x ')[1]
@@ -63,10 +63,10 @@ export const useGetEvents = (
           )
           const newVideo = {
             type: 'court',
-            id: video.id,
-            start_time: video.start_time,
-            preview_url: video.preview_url,
-            description: video.description,
+            id: video?.id,
+            start_time: video?.start_time,
+            preview_url: video?.preview_url,
+            description: video?.description,
             title,
             homeTeam: findHomeTeamLogo?.name,
             homeTeamLogo: findHomeTeamLogo?.logo,
@@ -88,17 +88,6 @@ export const useGetEvents = (
     getCourtEvents: getEvents?.filter(
       (event) => !event.description.includes('Circuito Brasileiro'),
     ),
-    typeFirstElement:
-      getEvents?.[0].title.includes('Circuito Brasileiro') ||
-      getEvents?.[0].title.includes('Campeonato Brasileiro')
-        ? 'withoutTeams'
-        : 'withTeams',
-    firstElement: getEvents?.[0],
-    typeSecondElement:
-      getEvents?.[1].title.includes('Circuito Brasileiro') ||
-      getEvents?.[1].title.includes('Campeonato Brasileiro')
-        ? 'withoutTeams'
-        : 'withTeams',
-    secondElement: getEvents?.[1],
+    firstTwoEvents: getEvents?.filter((_, idx) => idx < 2),
   }
 }

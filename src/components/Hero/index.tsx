@@ -34,10 +34,9 @@ const images = [
 ]
 
 export function Hero() {
-  const { data: videos, isFetching } = useChannel(EChannel.VoleiBrasil)
+  const { data: videos, isLoading } = useChannel(EChannel.VoleiBrasil)
 
-  const { typeFirstElement, firstElement, typeSecondElement, secondElement } =
-    useGetEvents(videos?.upcomming, teams)
+  const { firstTwoEvents } = useGetEvents(videos?.upcomming, teams)
 
   return (
     <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)30%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
@@ -85,28 +84,29 @@ export function Hero() {
       </div>
 
       <div className="hidden lg:w-full lg:grid lg:grid-cols-[416px,1fr] lg:gap-8 lg:justify-center lg:items-center lg:top-0 lg:h-[90%] lg:z-40 lg:absolute lg:pl-[6%]">
-        <div className="flex flex-col gap-4 lg:rounded-xl lg:bg-indigo-300/20 lg:backdrop-blur-lg lg:p-4">
-          <h2 className="text-xl text-center font-paralucentDemiBoldItalic">
-            Próximos jogos
-          </h2>
-          {isFetching ? (
-            <MotionBall />
-          ) : (
-            <>
-              {typeFirstElement === 'withoutTeams' ? (
-                <WithoutTeams element={firstElement} />
-              ) : (
-                <WithTeams element={firstElement} />
-              )}
-
-              {typeSecondElement === 'withoutTeams' ? (
-                <WithoutTeams element={secondElement} />
-              ) : (
-                <WithTeams element={secondElement} />
-              )}
-            </>
-          )}
-        </div>
+        {firstTwoEvents && firstTwoEvents?.length > 0 ? (
+          <div className="flex flex-col gap-4 lg:rounded-xl lg:bg-indigo-300/20 lg:backdrop-blur-lg lg:p-4">
+            <h2 className="text-xl text-center font-paralucentDemiBoldItalic">
+              Próximos jogos
+            </h2>
+            {isLoading ? (
+              <MotionBall />
+            ) : (
+              <>
+                {firstTwoEvents?.map((event) => {
+                  return event?.description.includes('Circuito Brasileiro') ||
+                    event?.description.includes('Campeonato Brasileiro') ? (
+                    <WithoutTeams element={event} />
+                  ) : (
+                    <WithTeams element={event} />
+                  )
+                })}
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="w-[416px]"></div>
+        )}
 
         <div className="text-center justify-center flex flex-col place-items-center font-semibold uppercase pb-10 lg:mx-auto lg:leading-snug">
           <Image
