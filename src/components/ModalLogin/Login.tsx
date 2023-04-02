@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
+import Cookies from 'js-cookie'
 
 import { Label } from '../Label'
 import { api } from '@/lib'
@@ -15,9 +16,7 @@ const schema = z.object({
     .string()
     .min(1, { message: 'O email é obrigatório' })
     .email({ message: 'Insira um email válido' }),
-  password: z
-    .string()
-    .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  password: z.string().min(1, { message: 'A senha é obrigatória' }),
 })
 
 type Inputs = z.infer<typeof schema>
@@ -26,7 +25,7 @@ const currentDomain = 'http://localhost:3000'
 
 export function Login() {
   // const router = useRouter()
-
+  // const [message, setMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -43,17 +42,22 @@ export function Login() {
         'Content-Type': 'application/json',
       },
     })
+
     return data
   }
 
   const mutation = useMutation(fetchLogin, {
     onSuccess: (data) => {
-      console.log(data)
+      Cookies.set('tvnsports_session', data.ticket)
+
+      // router.push(
+      //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
+      // )
+
       // setMessage(data)
     },
     onError: (e: any) => {
       alert(e.response.data.message[0])
-      // setMessage(e.response.data.message[0])
     },
   })
 
@@ -62,11 +66,6 @@ export function Login() {
       email: data.email,
       password: data.password,
     }
-    // router.push(
-    //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
-    // )
-
-    console.log(newData)
 
     mutation.mutate(newData)
   }

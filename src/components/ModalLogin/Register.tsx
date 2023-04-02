@@ -5,6 +5,7 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash } from 'phosphor-react'
 import { useMutation } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
 
 import { Label } from '../Label'
 
@@ -78,12 +79,18 @@ export function Register() {
         'Content-Type': 'application/json',
       },
     })
+
     return data
   }
 
   const mutation = useMutation(fetchSignUp, {
     onSuccess: (data) => {
-      console.log(data)
+      Cookies.set('tvnsports_session', data.ticket)
+
+      // router.push(
+      //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
+      // )
+
       setMessage(data)
     },
     onError: (e: any) => {
@@ -100,11 +107,6 @@ export function Register() {
       gender: data.gender,
       birth_date: data.birth_date,
     }
-    // router.push(
-    //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
-    // )
-
-    console.log(newData)
 
     mutation.mutate({ user: newData })
   }
