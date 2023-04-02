@@ -12,7 +12,7 @@ interface CourtEventsProps {
 
 export function CourtEvents({ title, events }: CourtEventsProps) {
   return (
-    <section className="relative flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
+    <section className="relative mb-4 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
       <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
         {title}
       </h2>
