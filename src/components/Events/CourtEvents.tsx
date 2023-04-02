@@ -1,22 +1,20 @@
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
-import { useChannel } from '@/hooks/useStates'
-import { useGetEvents } from '@/hooks/useGetEvents'
-import { teams } from '@/data'
-import { EChannel } from '@/dictionary'
-import { CourtCard } from './CourtCard'
-
 import '@splidejs/react-splide/css'
 
-export function UpcomingCourt() {
-  const { data: videos } = useChannel(EChannel.VoleiBrasil)
+import { IEvent } from '@/interfaces'
+import { CourtCard } from './CourtCard'
 
-  const { getCourtEvents } = useGetEvents(videos?.upcomming, teams)
+interface CourtEventsProps {
+  title: string
+  events: IEvent[]
+}
 
+export function CourtEvents({ title, events }: CourtEventsProps) {
   return (
     <section className="relative flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
       <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
-        Próximos Jogos - Vôlei de Quadra
+        {title}
       </h2>
 
       <Splide
@@ -42,9 +40,9 @@ export function UpcomingCourt() {
         }}
       >
         <SplideTrack>
-          {getCourtEvents?.map((match) => (
-            <SplideSlide key={match?.id} className="rounded-lg">
-              <CourtCard match={match} />
+          {events?.map((event) => (
+            <SplideSlide key={event?.id} className="rounded-lg">
+              <CourtCard match={event} />
             </SplideSlide>
           ))}
         </SplideTrack>

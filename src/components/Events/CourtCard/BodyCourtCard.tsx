@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 
 interface BodyCourtCardProps {
-  match: IUpcoming
+  match: IEvent
 }
 
 export function BodyCourtCard({ match }: BodyCourtCardProps) {

@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import { formatInTimeZone } from 'date-fns-tz'
 
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 
 import SLFem from '@/assets/Logo_SL_Fem.png'
 import SLMas from '@/assets/Logo_SL_Masc.png'
 
 interface HeaderCourtCardProps {
-  match: IUpcoming
+  match: IEvent
 }
 
 export function HeaderCourtCard({ match }: HeaderCourtCardProps) {

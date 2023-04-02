@@ -1,23 +1,20 @@
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
-import { useChannel } from '@/hooks/useStates'
-import { useGetEvents } from '@/hooks/useGetEvents'
-import { teams } from '@/data'
-import { EChannel } from '@/dictionary'
-
 import '@splidejs/react-splide/css'
 
+import { IEvent } from '@/interfaces'
 import { BeachCard } from './BeachCard'
 
-export function UpcomingBeach() {
-  const { data: videos } = useChannel(EChannel.VoleiBrasil)
+interface BeachEventsProps {
+  title: string
+  events: IEvent[]
+}
 
-  const { getBeachEvents } = useGetEvents(videos?.upcomming, teams)
-
+export function BeachEvents({ title, events }: BeachEventsProps) {
   return (
     <section className="relative flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue mb-4">
       <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
-        Próximos Jogos - Vôlei de Praia
+        {title}
       </h2>
 
       <Splide
@@ -43,9 +40,9 @@ export function UpcomingBeach() {
         }}
       >
         <SplideTrack>
-          {getBeachEvents?.map((match) => (
-            <SplideSlide key={match?.id} className="rounded-lg">
-              <BeachCard match={match} />
+          {events?.map((event) => (
+            <SplideSlide key={event?.id} className="rounded-lg">
+              <BeachCard match={event} />
             </SplideSlide>
           ))}
         </SplideTrack>

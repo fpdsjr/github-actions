@@ -1,13 +1,13 @@
 import { formatInTimeZone } from 'date-fns-tz'
 import Image from 'next/image'
 
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 
 import CBVP from '@/assets/CBVP.png'
 import CBVPColor from '@/assets/Logo_Colorido.png'
 
 interface BeachCardProps {
-  match: IUpcoming
+  match: IEvent
 }
 
 export function BeachCard({ match }: BeachCardProps) {

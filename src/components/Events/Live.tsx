@@ -7,13 +7,13 @@ import '@splidejs/react-splide/css'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
 import { EChannel } from '@/dictionary'
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 import { BeachCard } from './BeachCard'
 import { CourtCard } from './CourtCard'
 
 export function Live() {
   const { data: videos } = useChannel(EChannel.VoleiBrasil)
-  let lives: IUpcoming[] = []
+  let lives: IEvent[] = []
 
   const { getCourtEvents, getBeachEvents } = useGetEvents(videos?.lives, teams)
 

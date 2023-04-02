@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { formatInTimeZone } from 'date-fns-tz'
 
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 
 interface WithTeamsProps {
-  element: IUpcoming | undefined
+  element: IEvent | undefined
 }
 
 export function WithTeams({ element }: WithTeamsProps) {
@@ -14,7 +14,7 @@ export function WithTeams({ element }: WithTeamsProps) {
         {element?.title}
       </span>
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 font-bold tracking-tight md:max-w-none">
+        <div className="flex items-center gap-4 font-bold tracking-tight md:max-w-none">
           <Image
             src={element?.homeTeamLogo ?? ''}
             alt=""

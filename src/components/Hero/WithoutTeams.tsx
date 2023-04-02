@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import { formatInTimeZone } from 'date-fns-tz'
 
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 
 import CBVPColor from '@/assets/Logo_Colorido.png'
 
 interface WithoutTeamsProps {
-  element: IUpcoming | undefined
+  element: IEvent | undefined
 }
 
 export function WithoutTeams({ element }: WithoutTeamsProps) {

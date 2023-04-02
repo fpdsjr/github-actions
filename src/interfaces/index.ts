@@ -1,23 +1,26 @@
-export interface IEvents {
+export interface IVideo {
   id: number
   description: string
   preview_url: string
   start_time: string
 }
 
-export interface IVideo {
-  by_categories: {}
-  lives: IEvents[]
-  upcomming: IEvents[]
+export interface IChannel {
+  by_categories: {
+    'Jogos Anteriores': IVideo[]
+    'Melhores Momentos': IVideo[]
+  }
+  lives: IVideo[]
+  upcomming: IVideo[]
 }
 
 export interface ITvChannel {
-  videos: IVideo
+  videos: IChannel
 }
 
-export interface IUpcoming {
-  type: string
+export interface IEvent {
   id: number
+  type: string
   description: string
   preview_url: string
   start_time: string

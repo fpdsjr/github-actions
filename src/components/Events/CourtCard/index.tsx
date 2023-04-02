@@ -1,9 +1,9 @@
-import { IUpcoming } from '@/interfaces'
+import { IEvent } from '@/interfaces'
 import { HeaderCourtCard } from './HeaderCourtCard'
 import { BodyCourtCard } from './BodyCourtCard'
 
 interface CourtCardProps {
-  match: IUpcoming
+  match: IEvent
 }
 
 export function CourtCard({ match }: CourtCardProps) {

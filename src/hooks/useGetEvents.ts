@@ -1,11 +1,8 @@
 import { useMemo } from 'react'
 
-import { IEvents, ITeams } from '@/interfaces'
+import { IVideo, ITeams } from '@/interfaces'
 
-export const useGetEvents = (
-  events: IEvents[] | undefined,
-  teams: ITeams[],
-) => {
+export const useGetEvents = (events: IVideo[] | undefined, teams: ITeams[]) => {
   const getEvents = useMemo(() => {
     return events
       ?.filter((events) => !events?.description.includes('Acompanhe'))
@@ -44,17 +41,17 @@ export const useGetEvents = (
 
           return newVideo
         } else {
-          const title = video?.description.split(':')[0].trim()
+          const title = video?.description?.split(':')[0]?.trim()
           const homeTeam = video?.description
             .split(':')[1]
-            ?.split('-')[0]
+            ?.split(' - ')[0]
             ?.split(' x ')[0]
-            .trim()
+            ?.trim()
           const awayTeam = video?.description
             .split(':')[1]
-            ?.split('-')[0]
+            ?.split(' - ')[0]
             ?.split(' x ')[1]
-            .trim()
+            ?.trim()
           const findHomeTeamLogo = teams.find(
             (team) => team.nameFromAPI === homeTeam,
           )
