@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Link from 'next/link'
-// import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
+import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
 import { Label } from '../Label'
 import { api } from '@/lib'
-import { useMutation } from '@tanstack/react-query'
+import { UserContext } from '@/contexts/UserContext'
 
 const schema = z.object({
   email: z
@@ -24,7 +24,8 @@ type Inputs = z.infer<typeof schema>
 const currentDomain = 'http://localhost:3000'
 
 export function Login() {
-  // const router = useRouter()
+  const { handleUserToken } = useContext(UserContext)
+
   // const [message, setMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
@@ -49,12 +50,7 @@ export function Login() {
   const mutation = useMutation(fetchLogin, {
     onSuccess: (data) => {
       Cookies.set('tvnsports_session', data.ticket)
-
-      // router.push(
-      //   `https://www.nsports.com.br/user/login?current_domain=${currentDomain}`,
-      // )
-
-      // setMessage(data)
+      handleUserToken(data.ticket)
     },
     onError: (e: any) => {
       alert(e.response.data.message[0])

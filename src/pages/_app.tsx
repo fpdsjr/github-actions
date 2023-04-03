@@ -1,12 +1,14 @@
 import type { AppProps } from 'next/app'
+import { useState } from 'react'
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 
+import { UserProvider } from '@/contexts/UserContext'
+
 import '@/styles/globals.css'
-import { useState } from 'react'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -21,9 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
   )
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
-      </Hydrate>
+      <UserProvider>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Component {...pageProps} />
+        </Hydrate>
+      </UserProvider>
     </QueryClientProvider>
   )
 }
