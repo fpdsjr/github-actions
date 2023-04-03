@@ -54,7 +54,7 @@ export function Devices() {
         {devices.map((device) => (
           <div
             key={device.id}
-            className="flex flex-col justify-center items-center border-2 border-[rgb(38,75,114)] rounded-lg px-8 py-6 backdrop-blur-xl bg-transparent"
+            className="flex flex-col justify-center items-center border-2 border-[rgb(38,75,114)] rounded-lg px-6 py-4 backdrop-blur-xl bg-transparent"
           >
             <span className="text-white text-center">{device.name}</span>
             <Image
