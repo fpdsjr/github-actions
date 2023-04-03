@@ -26,8 +26,9 @@ const currentDomain = 'http://localhost:3000'
 export function Login() {
   const { handleUserToken, handleCloseModal } = useContext(UserContext)
 
-  // const [message, setMessage] = useState('')
+  const [status, setStatus] = useState<number>()
   const [showPassword, setShowPassword] = useState(false)
+  console.log(status)
 
   const {
     register,
@@ -36,6 +37,10 @@ export function Login() {
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   })
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   const fetchLogin = async (body: { email: string; password: string }) => {
     const { data } = await api.post(`/sessions`, body, {
@@ -53,7 +58,7 @@ export function Login() {
       handleUserToken(data.ticket)
     },
     onError: (e: any) => {
-      alert(e.response.data.message[0])
+      setStatus(e.response.status)
     },
   })
 
@@ -64,10 +69,6 @@ export function Login() {
     }
 
     mutation.mutate(newData)
-  }
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
   }
 
   return (
@@ -120,31 +121,18 @@ export function Login() {
           )}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-            />
-            <label
-              htmlFor="remember-me"
-              className="ml-2 block text-sm text-gray-900"
-            >
-              Lembrar-me
-            </label>
-          </div>
+        <Link
+          href="#"
+          className="font-medium text-sm text-light-blue hover:text-light-blue/80"
+        >
+          Esqueceu sua senha?
+        </Link>
 
-          <div className="text-sm">
-            <Link
-              href="#"
-              className="font-medium text-light-blue hover:text-light-blue/80"
-            >
-              Esqueceu sua senha?
-            </Link>
-          </div>
-        </div>
+        {status === 404 && (
+          <span className="block text-sm text-center text-red-600">
+            E-mail ou senha inválidos
+          </span>
+        )}
 
         <div>
           <button
