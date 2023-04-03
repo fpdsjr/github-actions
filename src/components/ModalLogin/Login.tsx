@@ -7,9 +7,9 @@ import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
 import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
-import { Label } from '../Label'
 import { api } from '@/lib'
 import { UserContext } from '@/contexts/UserContext'
+import { Label } from '../Label'
 
 const schema = z.object({
   email: z
@@ -24,7 +24,7 @@ type Inputs = z.infer<typeof schema>
 const currentDomain = 'http://localhost:3000'
 
 export function Login() {
-  const { handleUserToken } = useContext(UserContext)
+  const { handleUserToken, handleCloseModal } = useContext(UserContext)
 
   // const [message, setMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -72,6 +72,8 @@ export function Login() {
 
   return (
     <>
+      {mutation.isSuccess && handleCloseModal()}
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <Label htmlFor="email" text="E-mail" />
@@ -149,7 +151,7 @@ export function Login() {
             type="submit"
             className="flex w-full justify-center rounded-md bg-light-blue py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-light-blue/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Entrar
+            {mutation.isLoading ? 'Processando...' : 'Entrar'}
           </button>
         </div>
       </form>

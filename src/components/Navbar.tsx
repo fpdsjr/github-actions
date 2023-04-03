@@ -10,14 +10,9 @@ import { UserContext } from '@/contexts/UserContext'
 import { ModalLogin } from './ModalLogin'
 
 export function Navbar() {
-  const { user } = useContext(UserContext)
+  const { user, handleOpenModal } = useContext(UserContext)
 
   const [scroll, setScroll] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleOpenModal = () => {
-    setIsOpen(true)
-  }
 
   const controlNavbar = () => {
     if (window.scrollY > 200) {
@@ -37,7 +32,7 @@ export function Navbar() {
 
   return (
     <>
-      <ModalLogin isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalLogin />
 
       <Disclosure as="nav" className="transition-all">
         {({ open }) => (

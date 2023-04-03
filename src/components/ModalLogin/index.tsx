@@ -1,17 +1,12 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'phosphor-react'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
+
+import { UserContext } from '@/contexts/UserContext'
 import { Card } from './Card'
 
-interface LoginProps {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
-}
-
-export const ModalLogin = ({ isOpen, setIsOpen }: LoginProps) => {
-  function handleCloseModal() {
-    setIsOpen(false)
-  }
+export const ModalLogin = () => {
+  const { isOpen, handleCloseModal } = useContext(UserContext)
 
   return (
     <>
