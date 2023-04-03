@@ -28,7 +28,6 @@ export function Login() {
 
   const [status, setStatus] = useState<number>()
   const [showPassword, setShowPassword] = useState(false)
-  console.log(status)
 
   const {
     register,
