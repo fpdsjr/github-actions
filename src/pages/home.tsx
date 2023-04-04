@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 
 import { teams } from '@/data'
@@ -29,6 +30,10 @@ export default function Home() {
 
   const { getBeachEvents: previousBeach, getCourtEvents: previousCourt } =
     useGetEvents(videos?.by_categories['Jogos Anteriores'], teams)
+
+  useEffect(() => {
+    window.history.replaceState({}, '', '/')
+  }, [])
 
   return (
     <>
