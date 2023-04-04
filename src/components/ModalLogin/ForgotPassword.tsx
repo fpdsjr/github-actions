@@ -53,6 +53,7 @@ export function ForgotPassword() {
   return (
     <div className="space-y-6">
       <button
+        type="button"
         onClick={handleForgotPassword}
         className="flex items-center gap-1 text-sm text-zinc-700"
       >
@@ -89,13 +90,12 @@ export function ForgotPassword() {
         </div>
       </form>
 
-      {mutation.isSuccess ||
-        (mutation.isError && (
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Enviamos um e-mail para você com as instruções para redefinir sua
-            senha.
-          </p>
-        ))}
+      {(mutation.isSuccess || mutation.isError) && (
+        <p className="mt-2 text-center text-sm text-gray-600">
+          Enviamos um e-mail para você com as instruções para redefinir sua
+          senha.
+        </p>
+      )}
     </div>
   )
 }
