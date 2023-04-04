@@ -30,10 +30,18 @@ const schema = z
       .email({ message: 'Insira um email válido' }),
     password: z
       .string()
-      .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+      .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' })
+      .regex(/[a-z]/, { message: 'A senha deve conter pelo menos uma letra' })
+      .regex(/[A-Z]/, {
+        message: 'A senha deve conter pelo menos uma letra maiúscula',
+      })
+      .regex(/[0-9]/, { message: 'A senha deve conter pelo menos um número' })
+      .regex(/.*[\W_]+.*/, {
+        message: 'A senha deve conter pelo menos um caractere especial',
+      }),
     confirmPassword: z
       .string()
-      .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+      .min(1, { message: 'Você deve confirmar a sua senha' }),
     agreeTerms: z
       .boolean({
         errorMap: () => ({ message: 'Você deve aceitar os termos de uso' }),
