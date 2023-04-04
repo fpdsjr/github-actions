@@ -11,6 +11,7 @@ interface UserContextData {
   handleCloseModal: () => void
   forgotPassword: boolean
   handleForgotPassword: () => void
+  handleLogout: () => void
   user: {
     id: number
     name: string
@@ -53,6 +54,11 @@ export function UserProvider({ children }: UserProviderProps) {
     setForgotPassword(!forgotPassword)
   }
 
+  function handleLogout() {
+    Cookies.remove('tvnsports_session')
+    setUser({} as UserContextData['user'])
+  }
+
   useEffect(() => {
     const fetchUser = async () => {
       if (userToken && userToken !== undefined) {
@@ -79,6 +85,7 @@ export function UserProvider({ children }: UserProviderProps) {
         handleCloseModal,
         forgotPassword,
         handleForgotPassword,
+        handleLogout,
       }}
     >
       {children}
