@@ -120,12 +120,14 @@ export function Login() {
           )}
         </div>
 
-        <Link
-          href="#"
-          className="font-medium text-sm text-light-blue hover:text-light-blue/80"
-        >
-          Esqueceu sua senha?
-        </Link>
+        <div>
+          <Link
+            href="#"
+            className="font-medium text-sm text-light-blue hover:text-light-blue/80"
+          >
+            Esqueceu sua senha?
+          </Link>
+        </div>
 
         {status === 404 && (
           <span className="block text-sm text-center text-red-600">
