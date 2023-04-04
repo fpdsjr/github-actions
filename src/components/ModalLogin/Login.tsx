@@ -24,7 +24,8 @@ type Inputs = z.infer<typeof schema>
 const currentDomain = 'http://localhost:3000'
 
 export function Login() {
-  const { handleUserToken, handleCloseModal } = useContext(UserContext)
+  const { handleUserToken, handleCloseModal, handleForgotPassword } =
+    useContext(UserContext)
 
   const [status, setStatus] = useState<number>()
   const [showPassword, setShowPassword] = useState(false)
@@ -121,12 +122,12 @@ export function Login() {
         </div>
 
         <div>
-          <Link
-            href="#"
+          <button
+            onClick={handleForgotPassword}
             className="font-medium text-sm text-light-blue hover:text-light-blue/80"
           >
             Esqueceu sua senha?
-          </Link>
+          </button>
         </div>
 
         {status === 404 && (

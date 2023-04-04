@@ -9,6 +9,8 @@ interface UserContextData {
   isOpen: boolean
   handleOpenModal: () => void
   handleCloseModal: () => void
+  forgotPassword: boolean
+  handleForgotPassword: () => void
   user: {
     id: number
     name: string
@@ -33,6 +35,7 @@ export function UserProvider({ children }: UserProviderProps) {
   )
   const [user, setUser] = useState({} as UserContextData['user'])
   const [isOpen, setIsOpen] = useState(false)
+  const [forgotPassword, setForgotPassword] = useState(false)
 
   function handleUserToken(token: string) {
     setUserToken(token)
@@ -44,6 +47,10 @@ export function UserProvider({ children }: UserProviderProps) {
 
   function handleCloseModal() {
     setIsOpen(false)
+  }
+
+  function handleForgotPassword() {
+    setForgotPassword(!forgotPassword)
   }
 
   useEffect(() => {
@@ -70,6 +77,8 @@ export function UserProvider({ children }: UserProviderProps) {
         isOpen,
         handleOpenModal,
         handleCloseModal,
+        forgotPassword,
+        handleForgotPassword,
       }}
     >
       {children}
