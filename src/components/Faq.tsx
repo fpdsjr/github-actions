@@ -1,24 +1,29 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const FAQ = [
   {
     id: 1,
     question: 'P: Quais partidas eu posso assistir?',
     answer:
-      'Todas as partidas de vôlei de praia e vôlei de quadra organizadas pela Confederação Brasileira de Vôlei. As partidas são anunciadas da tela inicial do Canal Vôlei Brasil, cerca de 5 dias antes da partida. Selecione a partida para saber mais sobre os próximos jogos.',
+      'Tá sentado, voleinauta? Respira fundo... Porque são mais de 1600 jogos no ano, tá 🤩? Todos os jogos do circuito de vôlei de praia, tem a Superliga A, Superliga B, Superliga C,  Campeonato Brasileiro de Seleções e muito mais, além de muito conteúdo exclusivo do mundo do vôlei só para você que é assinante.',
   },
   {
     id: 2,
     question: 'P: Como eu assisto um jogo?',
     answer:
-      'Navegue na tela inicial para ver os próximos jogos do Canal Vôlei Brasil. Se uma partida estiver em andamento, "Ao vivo" aparecerá no canto superior esquerdo. Selecione a partida para começar a assistir a transmissão ao vivo que estiver em andamento (você não poderá assistir à partida desde o início). Posteriormente, após o encerramento da partida, ficará disponível no canal o jogo na íntegra.',
+      'Na tela inicial você poderá ver os próximos jogos do Canal Vôlei Brasil. A partida em andamento aparecerá no modo ao vivo no canto superior esquerdo. Basta selecionar e começar a assistir. Os jogos ao vivo na íntegra estarão disponíveis após o encerramento da partida. As partidas são anunciadas da tela inicial do Canal Vôlei Brasil, cerca de 5 dias antes da partida.',
   },
   {
     id: 3,
     question: 'P: E se eu não gostar do Canal Vôlei Brasil?',
     answer:
-      'Caso você não goste ou se arrependa de ter adquirido a assinatura do Novo Canal Vôlei Brasil, você pode solicitar o cancelamento em até 7 dias depois da compra. Basta clicar em ‘Solicitar Atendimento’ no canto superior direito e preencher o formulário de Cancelamento de Plano ou envie um e-mail para sac@tvnsports.com.br com o motivo de cancelamento, o endereço de e-mail cadastrado e CPF. Não se aplica para jogos avulsos!',
+      'Caso se arrependa de ter adquirido a assinatura do Novo Canal Vôlei Brasil, você pode solicitar o cancelamento em até 7 dias depois da compra. Vá na ',
+    answerLinkText: 'Central de Ajuda',
+    answerLinkUrl: 'https://tvnsports.zendesk.com/',
+    answerContinue:
+      ' e clique em "Solicitar Atendimento" no canto superior direito e preencher o formulário de cancelamento de plano ou envie um e-mail para sac@tvnsports.com.br com o motivo de cancelamento, o endereço de e-mail cadastrado e CPF. Não se aplica para jogos avulsos!',
   },
 ]
 
@@ -71,6 +76,17 @@ export function Faq() {
                       >
                         <p className="text-lg font-medium leading-7 text-gray-400 py-3">
                           {faq.answer}
+                          {faq.answerLinkText && (
+                            <>
+                              <Link
+                                href={faq.answerLinkUrl}
+                                className="text-light-blue transition-all hover:underline"
+                              >
+                                {faq.answerLinkText}
+                              </Link>
+                              {faq.answerContinue}
+                            </>
+                          )}
                         </p>
                       </Disclosure.Panel>
                     </Transition>
