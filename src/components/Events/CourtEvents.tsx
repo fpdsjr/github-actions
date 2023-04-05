@@ -40,11 +40,17 @@ export function CourtEvents({ title, events }: CourtEventsProps) {
         }}
       >
         <SplideTrack>
-          {events?.map((event) => (
-            <SplideSlide key={event?.id} className="rounded-lg">
-              <CourtCard match={event} />
-            </SplideSlide>
-          ))}
+          {events
+            ?.sort(
+              (a, b) =>
+                new Date(a.start_time).getTime() -
+                new Date(b.start_time).getTime(),
+            )
+            .map((event) => (
+              <SplideSlide key={event?.id} className="rounded-lg">
+                <CourtCard match={event} />
+              </SplideSlide>
+            ))}
         </SplideTrack>
       </Splide>
     </section>

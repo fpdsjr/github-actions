@@ -28,8 +28,15 @@ export default function Home() {
   const { getBeachEvents: upcomingBeach, getCourtEvents: upcomingCourt } =
     useGetEvents(videos?.upcomming, teams)
 
-  const { getBeachEvents: previousBeach, getCourtEvents: previousCourt } =
-    useGetEvents(videos?.by_categories['Jogos Anteriores'], teams)
+  const { getCourtEvents: previousCourt } = useGetEvents(
+    videos?.by_categories['Jogos Anteriores'],
+    teams,
+  )
+
+  const { getBeachEvents: previousBeach } = useGetEvents(
+    videos?.by_categories['Circuito Brasileiro de Vôlei de Praia'],
+    teams,
+  )
 
   useEffect(() => {
     window.history.replaceState({}, '', '/')
@@ -64,7 +71,7 @@ export default function Home() {
           />
         )}
 
-        {(upcomingCourt?.length === 0 || upcomingBeach?.length === 0) &&
+        {upcomingCourt?.length === 0 &&
           previousCourt &&
           previousCourt?.length > 0 && (
             <CourtEvents
@@ -73,7 +80,7 @@ export default function Home() {
             />
           )}
 
-        {(upcomingCourt?.length === 0 || upcomingBeach?.length === 0) &&
+        {upcomingBeach?.length === 0 &&
           previousBeach &&
           previousBeach?.length > 0 && (
             <BeachEvents

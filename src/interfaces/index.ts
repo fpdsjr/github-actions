@@ -10,6 +10,7 @@ export interface IChannel {
   by_categories: {
     'Jogos Anteriores': IVideo[]
     'Melhores Momentos': IVideo[]
+    'Circuito Brasileiro de Vôlei de Praia': IVideo[]
   }
   lives: IVideo[]
   upcomming: IVideo[]
