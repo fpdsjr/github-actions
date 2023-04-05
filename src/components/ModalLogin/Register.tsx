@@ -12,6 +12,7 @@ import { api } from '@/lib'
 import { ILoginData } from '@/interfaces'
 import { BirthDate } from './BirthDate'
 import { Label } from '../Label'
+import { classNames } from '@/utils'
 
 const schema = z
   .object({
@@ -30,15 +31,11 @@ const schema = z
       .email({ message: 'Insira um email válido' }),
     password: z
       .string()
-      .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' })
-      .regex(/[a-z]/, { message: 'A senha deve conter pelo menos uma letra' })
-      .regex(/[A-Z]/, {
-        message: 'A senha deve conter pelo menos uma letra maiúscula',
-      })
-      .regex(/[0-9]/, { message: 'A senha deve conter pelo menos um número' })
-      .regex(/.*[\W_]+.*/, {
-        message: 'A senha deve conter pelo menos um caractere especial',
-      }),
+      .min(6)
+      .regex(/[a-z]/)
+      .regex(/[A-Z]/)
+      .regex(/[0-9]/)
+      .regex(/.*[\W_]+.*/),
     confirmPassword: z
       .string()
       .min(1, { message: 'Você deve confirmar a sua senha' }),
@@ -73,10 +70,13 @@ export function Register() {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   })
+
+  const password = watch('password')
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -212,11 +212,58 @@ export function Register() {
               {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          {errors.password && (
-            <span className="text-red-600 text-xs">
-              {errors.password.message}
-            </span>
-          )}
+
+          <div className="text-gray-400 text-xs pt-2 flex flex-col">
+            <ul className="font-medium mb-1">A senha deve ter pelo menos:</ul>
+            <li
+              className={classNames(
+                password?.length >= 6 ? 'text-green-600' : '',
+                'font-medium',
+              )}
+            >
+              6 caracteres
+            </li>
+            <li
+              className={classNames(
+                password?.length >= 1 && /[a-z]/.test(password)
+                  ? 'text-green-600'
+                  : '',
+                'font-medium',
+              )}
+            >
+              uma letra minúscula (a-z)
+            </li>
+            <li
+              className={classNames(
+                password?.length >= 1 && /[A-Z]/.test(password)
+                  ? 'text-green-600'
+                  : '',
+                'font-medium',
+              )}
+            >
+              uma letra maiúscula (A-Z)
+            </li>
+            <li
+              className={classNames(
+                password?.length >= 1 && /[0-9]/.test(password)
+                  ? 'text-green-600'
+                  : '',
+                'font-medium',
+              )}
+            >
+              um número (0-9)
+            </li>
+            <li
+              className={classNames(
+                password?.length >= 1 && /.*[\W_]+.*/.test(password)
+                  ? 'text-green-600'
+                  : '',
+                'font-medium',
+              )}
+            >
+              um caractere especial (!@#%$,etc)
+            </li>
+          </div>
         </div>
 
         <div>
