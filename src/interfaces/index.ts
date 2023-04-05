@@ -3,6 +3,7 @@ export interface IVideo {
   description: string
   preview_url: string
   start_time: string
+  slug: string
 }
 
 export interface IChannel {
@@ -24,6 +25,7 @@ export interface IEvent {
   description: string
   preview_url: string
   start_time: string
+  slug: string
   title: string
   homeTeam?: string
   awayTeam?: string
