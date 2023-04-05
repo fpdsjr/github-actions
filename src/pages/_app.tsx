@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import TagManager from 'react-gtm-module'
 
 import { UserProvider } from '@/contexts/UserContext'
 
@@ -21,6 +22,11 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       }),
   )
+
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-MP2F4PC' })
+  }, [])
+
   return (
     <QueryClientProvider client={queryClient}>
       <UserProvider>
