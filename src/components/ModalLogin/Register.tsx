@@ -1,17 +1,17 @@
 import { useContext, useState } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import Link from 'next/link'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Eye, EyeSlash } from 'phosphor-react'
+import { ArrowSquareOut, Eye, EyeSlash } from 'phosphor-react'
 import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
-import { Label } from '../Label'
-
+import { UserContext } from '@/contexts/UserContext'
 import { api } from '@/lib'
 import { ILoginData } from '@/interfaces'
 import { BirthDate } from './BirthDate'
-import { UserContext } from '@/contexts/UserContext'
+import { Label } from '../Label'
 
 const schema = z
   .object({
@@ -260,9 +260,17 @@ export function Register() {
                 />
                 <label
                   htmlFor="agreeTerms"
-                  className="ml-2 block text-sm text-gray-900"
+                  className="ml-2 inline-flex items-center gap-1 text-sm text-gray-900"
                 >
-                  Concordo com a política de privacidade
+                  Concordo com a{' '}
+                  <Link
+                    href="/privacy_policy.pdf"
+                    target="_blank"
+                    className="text-light-blue inline-flex items-center gap-1 transition-all hover:underline"
+                  >
+                    política de privacidade
+                    <ArrowSquareOut />
+                  </Link>
                 </label>
               </div>
             )}
