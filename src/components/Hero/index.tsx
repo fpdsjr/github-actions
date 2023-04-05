@@ -24,13 +24,13 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 
 const images = [
-  { src: praia3, alt: 'vôlei de praia' },
-  { src: quadra3, alt: 'vôlei de quadra' },
-  { src: praia1, alt: 'vôlei de praia' },
-  { src: quadra1, alt: 'vôlei de quadra' },
-  { src: praia2, alt: 'vôlei de praia' },
-  { src: quadra2, alt: 'vôlei de quadra' },
-  { src: praia4, alt: 'vôlei de praia' },
+  { src: praia3, alt: 'vôlei de praia', position: 'object-[76%,50%]' },
+  { src: quadra3, alt: 'vôlei de quadra', position: 'object-[82%,50%]' },
+  { src: praia1, alt: 'vôlei de praia', position: 'object-center' },
+  { src: quadra1, alt: 'vôlei de quadra', position: 'object-center' },
+  { src: praia2, alt: 'vôlei de praia', position: 'object-[92%,50%]' },
+  { src: quadra2, alt: 'vôlei de quadra', position: 'object-center' },
+  { src: praia4, alt: 'vôlei de praia', position: 'object-center' },
 ]
 
 export function Hero() {
@@ -60,7 +60,7 @@ export function Hero() {
               alt={img.alt}
               placeholder="blur"
               blurDataURL=""
-              className="w-full object-cover h-[90vh] relative lg:absolute lg:object-[50%,30%] lg:h-screen lg:brightness-[0.6]"
+              className={`w-full ${img.position} object-cover h-[90vh] relative lg:absolute lg:object-[50%,30%] lg:h-screen lg:brightness-[0.6]`}
             />
           </SwiperSlide>
         ))}
