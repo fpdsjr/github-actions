@@ -147,40 +147,6 @@ export function Register() {
           )}
         </div>
 
-        <BirthDate errors={errors} control={control} />
-
-        <div>
-          <Label text="Sexo" htmlFor="gender" />
-
-          <fieldset className="mt-2">
-            <legend className="sr-only">Sexo</legend>
-            <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-              {genders.map((gender) => (
-                <div key={gender.id} className="flex items-center">
-                  <input
-                    id={gender.id}
-                    type="radio"
-                    value={gender.id}
-                    {...register('gender')}
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                  />
-                  <label
-                    htmlFor={gender.id}
-                    className="ml-3 block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    {gender.title}
-                  </label>
-                </div>
-              ))}
-            </div>
-            {errors.gender && (
-              <span className="text-red-600 text-xs">
-                {errors.gender.message}
-              </span>
-            )}
-          </fieldset>
-        </div>
-
         <div>
           <Label text="E-mail" htmlFor="email" />
 
@@ -196,6 +162,43 @@ export function Register() {
           </div>
           {errors.email && (
             <span className="text-red-600 text-xs">{errors.email.message}</span>
+          )}
+        </div>
+
+        <BirthDate errors={errors} control={control} />
+
+        <div>
+          <div className="flex justify-between items-center">
+            <Label text="Sexo" htmlFor="gender" />
+
+            <fieldset>
+              <legend className="sr-only">Sexo</legend>
+              <div className="flex items-center space-x-10 space-y-0">
+                {genders.map((gender) => (
+                  <div key={gender.id} className="flex items-center">
+                    <input
+                      id={gender.id}
+                      type="radio"
+                      value={gender.id}
+                      {...register('gender')}
+                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    />
+                    <label
+                      htmlFor={gender.id}
+                      className="ml-3 block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      {gender.title}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+
+          {errors.gender && (
+            <span className="text-red-600 text-xs">
+              {errors.gender.message}
+            </span>
           )}
         </div>
 
