@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { teams } from '@/data'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
+import { useResetUrlHome } from '@/hooks/useResetUrlHome'
 import { EChannel } from '@/dictionary'
 import { Navbar } from '@/components/Navbar'
 import { Hero } from '@/components/Hero'
@@ -19,6 +20,9 @@ import { Live } from '@/components/Events/Live'
 
 export default function Home() {
   const { data: videos } = useChannel(EChannel.VoleiBrasil)
+
+  const router = useRouter()
+  useResetUrlHome(router?.asPath)
 
   const { getBeachEvents: liveBeach, getCourtEvents: liveCourt } = useGetEvents(
     videos?.lives,
@@ -37,10 +41,6 @@ export default function Home() {
     videos?.by_categories['Circuito Brasileiro de Vôlei de Praia'],
     teams,
   )
-
-  useEffect(() => {
-    window.history.replaceState({}, '', '/')
-  }, [])
 
   return (
     <>

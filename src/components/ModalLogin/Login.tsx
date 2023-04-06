@@ -22,7 +22,7 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>
 
-const currentDomain = 'https://new-cvb.vercel.app/home'
+const currentDomain = process.env.NEXT_PUBLIC_CURRENT_DOMAIN
 
 export function Login() {
   const {
