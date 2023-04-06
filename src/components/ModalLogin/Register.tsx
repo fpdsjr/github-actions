@@ -6,13 +6,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowSquareOut, Eye, EyeSlash } from 'phosphor-react'
 import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 import { UserContext } from '@/contexts/UserContext'
 import { api } from '@/lib'
+import { classNames } from '@/utils'
 import { ILoginData } from '@/interfaces'
 import { BirthDate } from './BirthDate'
 import { Label } from '../Label'
-import { classNames } from '@/utils'
 
 const schema = z
   .object({
@@ -60,7 +61,9 @@ const genders = [
 ]
 
 export function Register() {
-  const { handleUserToken, handleCloseModal } = useContext(UserContext)
+  const router = useRouter()
+  const { handleUserToken, handleCloseModal, isSubscribeNow } =
+    useContext(UserContext)
 
   const [message, setMessage] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -100,6 +103,10 @@ export function Register() {
     onSuccess: (data) => {
       Cookies.set('tvnsports_session', data.ticket)
       handleUserToken(data.ticket)
+      isSubscribeNow &&
+        router.push(
+          'https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil',
+        )
     },
     onError: (e: any) => {
       setMessage(e.response.data.message[0])

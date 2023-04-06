@@ -11,7 +11,7 @@ import { ForgotPassword } from './ForgotPassword'
 const tabs = [{ name: 'Login' }, { name: 'Cadastro' }]
 
 export const Card = () => {
-  const { forgotPassword } = useContext(UserContext)
+  const { forgotPassword, welcomeMessage } = useContext(UserContext)
 
   return (
     <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@ export const Card = () => {
           Bem-vindo!
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Siga o passo a passo para realizar o seu login ou o seu cadastro.
+          {welcomeMessage}
         </p>
       </div>
 

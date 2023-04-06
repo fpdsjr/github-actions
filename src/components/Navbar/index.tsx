@@ -9,7 +9,8 @@ import { MenuNavMobile } from './MenuNavMobile'
 import { UserContext } from '@/contexts/UserContext'
 
 export function Navbar() {
-  const { handleOpenModal } = useContext(UserContext)
+  const { handleOpenModal, setIsSubscribeNow, handleWelcomeMessage } =
+    useContext(UserContext)
 
   const [scroll, setScroll] = useState(false)
 
@@ -67,14 +68,21 @@ export function Navbar() {
               <div className="space-y-1 px-2 pt-2 pb-3">
                 <Disclosure.Button
                   as="button"
-                  onClick={handleOpenModal}
+                  onClick={() => {
+                    handleWelcomeMessage('entrar')
+                    handleOpenModal()
+                  }}
                   className="block rounded-md w-full px-3 py-2 text-start text-base font-medium text-white transition-colors hover:bg-medium-blue/60"
                 >
                   Entrar
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => {
+                    setIsSubscribeNow(true)
+                    handleWelcomeMessage('assine agora')
+                    handleOpenModal()
+                  }}
                   className="block rounded-md w-full px-3 py-2 text-start text-base font-medium text-white transition-colors hover:bg-medium-blue/60"
                 >
                   Assine agora

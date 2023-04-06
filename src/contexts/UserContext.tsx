@@ -1,17 +1,28 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 
 import { api } from '@/lib'
-import Cookies from 'js-cookie'
+
+enum EWelcomeMessage {
+  'entrar' = 'Siga o passo a passo para realizar o seu login ou o seu cadastro.',
+  'assine agora' = 'Faça o seu login ou cadastro para continuar.',
+}
+
+type WelcomeMessage = keyof typeof EWelcomeMessage
 
 interface UserContextData {
   userToken: string
-  handleUserToken: (token: string) => void
   isOpen: boolean
+  forgotPassword: boolean
+  isSubscribeNow: boolean
+  welcomeMessage: string
+  handleUserToken: (token: string) => void
   handleOpenModal: () => void
   handleCloseModal: () => void
-  forgotPassword: boolean
   handleForgotPassword: () => void
   handleLogout: () => void
+  setIsSubscribeNow: (value: boolean) => void
+  handleWelcomeMessage: (message: WelcomeMessage) => void
   user: {
     id: number
     name: string
@@ -37,6 +48,8 @@ export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState({} as UserContextData['user'])
   const [isOpen, setIsOpen] = useState(false)
   const [forgotPassword, setForgotPassword] = useState(false)
+  const [isSubscribeNow, setIsSubscribeNow] = useState(false)
+  const [welcomeMessage, setWelcomeMessage] = useState('')
 
   function handleUserToken(token: string) {
     setUserToken(token)
@@ -48,6 +61,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
   function handleCloseModal() {
     setIsOpen(false)
+    setIsSubscribeNow(false)
   }
 
   function handleForgotPassword() {
@@ -57,6 +71,10 @@ export function UserProvider({ children }: UserProviderProps) {
   function handleLogout() {
     Cookies.remove('tvnsports_session')
     setUser({} as UserContextData['user'])
+  }
+
+  function handleWelcomeMessage(message: WelcomeMessage) {
+    setWelcomeMessage(EWelcomeMessage[message])
   }
 
   useEffect(() => {
@@ -86,6 +104,10 @@ export function UserProvider({ children }: UserProviderProps) {
         forgotPassword,
         handleForgotPassword,
         handleLogout,
+        isSubscribeNow,
+        setIsSubscribeNow,
+        handleWelcomeMessage,
+        welcomeMessage,
       }}
     >
       {children}

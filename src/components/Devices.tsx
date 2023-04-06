@@ -1,4 +1,7 @@
+import { UserContext } from '@/contexts/UserContext'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useContext } from 'react'
 
 const devices = [
   {
@@ -34,6 +37,9 @@ const devices = [
 ]
 
 export function Devices() {
+  const { handleOpenModal, user, setIsSubscribeNow, handleWelcomeMessage } =
+    useContext(UserContext)
+
   return (
     <section className="relative flex flex-col items-center py-24 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className="mx-auto max-w-4xl text-center">
@@ -46,9 +52,25 @@ export function Devices() {
         outros aparelhos. Transmissões em Full HD.
       </p>
 
-      <button className="py-3 bg-medium-blue font-bold text-lg w-60 rounded mb-10">
-        Assine agora
-      </button>
+      {user.id ? (
+        <Link
+          href="https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil"
+          className="py-3 bg-medium-blue font-bold text-lg w-60 rounded mb-10 flex items-center justify-center"
+        >
+          Assine agora
+        </Link>
+      ) : (
+        <button
+          onClick={() => {
+            setIsSubscribeNow(true)
+            handleWelcomeMessage('assine agora')
+            handleOpenModal()
+          }}
+          className="py-3 bg-medium-blue font-bold text-lg w-60 rounded mb-10"
+        >
+          Assine agora
+        </button>
+      )}
 
       <div className="w-full flex-1 flex flex-wrap justify-center gap-2 mx-auto sm:flex-row lg:max-w-6xl lg:gap-4 lg:grid lg:grid-cols-5">
         {devices.map((device) => (

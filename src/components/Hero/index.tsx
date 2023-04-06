@@ -1,9 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useContext } from 'react'
 
 import { EffectFade, Navigation, Autoplay } from 'swiper'
 
+import { UserContext } from '@/contexts/UserContext'
 import { useChannel } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
@@ -37,6 +39,9 @@ export function Hero() {
   const { data: videos, isLoading } = useChannel(EChannel.VoleiBrasil)
 
   const { firstTwoEvents } = useGetEvents(videos?.upcomming, teams)
+
+  const { handleOpenModal, user, setIsSubscribeNow, handleWelcomeMessage } =
+    useContext(UserContext)
 
   return (
     <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)30%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
@@ -74,12 +79,25 @@ export function Hero() {
           Tudo de vôlei em um só lugar!
         </p>
         <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
-          <Link
-            href="#"
-            className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
-          >
-            Quero assistir vôlei o ano todo!
-          </Link>
+          {user.id ? (
+            <Link
+              href="https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil"
+              className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+            >
+              Quero assistir vôlei o ano todo!
+            </Link>
+          ) : (
+            <button
+              onClick={() => {
+                setIsSubscribeNow(true)
+                handleWelcomeMessage('assine agora')
+                handleOpenModal()
+              }}
+              className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+            >
+              Quero assistir vôlei o ano todo!
+            </button>
+          )}
         </div>
       </div>
 
@@ -122,12 +140,25 @@ export function Hero() {
             Tudo de vôlei em um só lugar!
           </p>
           <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
-            <Link
-              href="#"
-              className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
-            >
-              Quero assistir vôlei o ano todo!
-            </Link>
+            {user.id ? (
+              <Link
+                href="https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil"
+                className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+              >
+                Quero assistir vôlei o ano todo!
+              </Link>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsSubscribeNow(true)
+                  handleWelcomeMessage('assine agora')
+                  handleOpenModal()
+                }}
+                className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
+              >
+                Quero assistir vôlei o ano todo!
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeSlash, FacebookLogo, GoogleLogo } from 'phosphor-react'
 import { useMutation } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 import { api } from '@/lib'
 import { UserContext } from '@/contexts/UserContext'
@@ -21,14 +22,19 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>
 
-const currentDomain = 'http://localhost:3000'
+const currentDomain = 'https://new-cvb.vercel.app/home'
 
 export function Login() {
-  const { handleUserToken, handleCloseModal, handleForgotPassword } =
-    useContext(UserContext)
+  const {
+    handleUserToken,
+    handleCloseModal,
+    handleForgotPassword,
+    isSubscribeNow,
+  } = useContext(UserContext)
 
   const [status, setStatus] = useState<number>()
   const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter()
 
   const {
     register,
@@ -56,6 +62,10 @@ export function Login() {
     onSuccess: (data) => {
       Cookies.set('tvnsports_session', data.ticket)
       handleUserToken(data.ticket)
+      isSubscribeNow &&
+        router.push(
+          'https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil',
+        )
     },
     onError: (e: any) => {
       setStatus(e.response.status)

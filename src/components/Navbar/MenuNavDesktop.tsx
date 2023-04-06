@@ -1,5 +1,4 @@
 import { Fragment, useContext } from 'react'
-import Link from 'next/link'
 import { SignOut, User } from 'phosphor-react'
 import { Menu, Transition } from '@headlessui/react'
 
@@ -7,7 +6,13 @@ import { UserContext } from '@/contexts/UserContext'
 import { classNames } from '@/utils'
 
 export function MenuNavDesktop() {
-  const { user, handleOpenModal, handleLogout } = useContext(UserContext)
+  const {
+    user,
+    handleOpenModal,
+    handleLogout,
+    setIsSubscribeNow,
+    handleWelcomeMessage,
+  } = useContext(UserContext)
 
   return (
     <div className="hidden sm:ml-6 sm:block">
@@ -51,17 +56,24 @@ export function MenuNavDesktop() {
       ) : (
         <div className="flex space-x-4">
           <button
-            onClick={handleOpenModal}
+            onClick={() => {
+              handleWelcomeMessage('entrar')
+              handleOpenModal()
+            }}
             className="rounded-md px-3 py-2 text-sm font-medium text-white"
           >
             Entrar
           </button>
-          <Link
-            href="#"
+          <button
+            onClick={() => {
+              setIsSubscribeNow(true)
+              handleWelcomeMessage('assine agora')
+              handleOpenModal()
+            }}
             className="rounded-md px-3 py-2 text-sm font-medium bg-medium-blue text-white transition-colors hover:bg-medium-blue/60 hover:text-white"
           >
             Assine agora
-          </Link>
+          </button>
         </div>
       )}
     </div>
