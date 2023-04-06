@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import bannerMobile from '@/assets/banner-grid-640X640.jpg'
+import bannerMobile from '@/assets/banner-grid-640x640.jpg'
 import bannerDesktop from '@/assets/banner-grid-1920x1080.jpg'
 
 export function Categories() {
@@ -16,18 +16,12 @@ export function Categories() {
         Vôlei
       </p>
 
-      <div className="relative h-screen w-full py-24 flex justify-center px-4 sm:px-6 md:px-8 lg:px-10">
-        <Image
-          src={bannerMobile}
-          alt=""
-          fill
-          className="object-contain sm:hidden"
-        />
+      <div className="relative h-full w-full py-4">
+        <Image src={bannerMobile} alt="" className="object-cover sm:hidden" />
         <Image
           src={bannerDesktop}
           alt=""
-          fill
-          className="hidden sm:block sm:object-cover"
+          className="hidden sm:block sm:object-cover 2xl:mx-auto"
         />
       </div>
     </div>
