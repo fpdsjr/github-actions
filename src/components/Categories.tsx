@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import bannerMobile from '@/assets/banner-grid-640x640.jpg'
+import bannerMobile from '@/assets/banner-grid-640X640.jpg'
 import bannerDesktop from '@/assets/banner-grid-1920x1080.jpg'
 
 export function Categories() {
