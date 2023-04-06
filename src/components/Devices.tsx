@@ -32,8 +32,13 @@ const devices = [
 ]
 
 export function Devices() {
-  const { handleOpenModal, user, setIsSubscribeNow, handleWelcomeMessage } =
-    useContext(UserContext)
+  const {
+    handleOpenModal,
+    shortToken,
+    user,
+    setIsSubscribeNow,
+    handleWelcomeMessage,
+  } = useContext(UserContext)
 
   return (
     <section className="relative flex flex-col items-center py-24 px-4 sm:px-6 md:px-8 lg:px-10">
@@ -49,7 +54,7 @@ export function Devices() {
 
       {user.id ? (
         <Link
-          href="https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil"
+          href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`}
           className="py-3 bg-medium-blue font-bold text-lg w-60 rounded mb-10 flex items-center justify-center"
         >
           Assine agora

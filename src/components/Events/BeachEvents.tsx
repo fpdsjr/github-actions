@@ -1,7 +1,10 @@
+import Link from 'next/link'
+import { useContext } from 'react'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
 import '@splidejs/react-splide/css'
 
+import { UserContext } from '@/contexts/UserContext'
 import { IEvent } from '@/interfaces'
 import { BeachCard } from './BeachCard'
 
@@ -11,6 +14,14 @@ interface BeachEventsProps {
 }
 
 export function BeachEvents({ title, events }: BeachEventsProps) {
+  const {
+    shortToken,
+    user,
+    setIsSubscribeNow,
+    handleOpenModal,
+    handleWelcomeMessage,
+  } = useContext(UserContext)
+
   return (
     <section className="relative mb-4 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
       <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
@@ -48,7 +59,24 @@ export function BeachEvents({ title, events }: BeachEventsProps) {
             )
             .map((event) => (
               <SplideSlide key={event?.id} className="rounded-lg">
-                <BeachCard match={event} />
+                {user.id ? (
+                  <Link
+                    href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`}
+                  >
+                    <BeachCard match={event} />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsSubscribeNow(true)
+                      handleWelcomeMessage('assine agora')
+                      handleOpenModal()
+                    }}
+                    className="w-full"
+                  >
+                    <BeachCard match={event} />
+                  </button>
+                )}
               </SplideSlide>
             ))}
         </SplideTrack>

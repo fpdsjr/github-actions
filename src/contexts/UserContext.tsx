@@ -16,6 +16,7 @@ interface UserContextData {
   forgotPassword: boolean
   isSubscribeNow: boolean
   welcomeMessage: string
+  shortToken: string
   handleUserToken: (token: string) => void
   handleOpenModal: () => void
   handleCloseModal: () => void
@@ -45,6 +46,7 @@ export function UserProvider({ children }: UserProviderProps) {
   const [userToken, setUserToken] = useState(
     () => Cookies.get('tvnsports_session') || '',
   )
+  const [shortToken, setShortToken] = useState('')
   const [user, setUser] = useState({} as UserContextData['user'])
   const [isOpen, setIsOpen] = useState(false)
   const [forgotPassword, setForgotPassword] = useState(false)
@@ -92,11 +94,27 @@ export function UserProvider({ children }: UserProviderProps) {
     fetchUser()
   }, [userToken])
 
+  useEffect(() => {
+    const fetchShortToken = async () => {
+      if (userToken && userToken !== undefined) {
+        const { data } = await api.post('/tokens', {}, {
+          headers: {
+            ticket: userToken,
+          },
+        })
+        setShortToken(data.token)
+      }
+    }
+
+    fetchShortToken()
+  }, [userToken])
+
   return (
     <UserContext.Provider
       value={{
         user,
         userToken,
+        shortToken,
         handleUserToken,
         isOpen,
         handleOpenModal,

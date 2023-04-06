@@ -1,12 +1,23 @@
-import { classNames } from '@/utils'
+import { useContext } from 'react'
 import Link from 'next/link'
+
+import { UserContext } from '@/contexts/UserContext'
+import { classNames } from '@/utils'
+
+const setShortToken = (token: string, idx: number) => {
+  const concatena =
+    tiers[idx].href.split('?ct=')[0] +
+    `?ct=${token}` +
+    tiers[idx].href.split('?ct=')[1]
+  return concatena
+}
 
 const tiers = [
   {
     id: 'monthly',
     name: 'Novo Canal Vôlei Brasil',
     description: 'MENSAL - cancele quando quiser',
-    href: 'https://canalvoleibrasil.cbv.com.br/plans?event_id=13502&plan=91',
+    href: `https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=/plans?event_id=13502&plan=105`,
     price: 'R$ 12,90',
     mostPopular: false,
     textButton: 'Assinar mensal',
@@ -16,7 +27,7 @@ const tiers = [
     name: 'Novo Canal Vôlei Brasil',
     description: 'ANUAL - em até 12x sem juros',
     tag: 'Economize 4 meses',
-    href: 'https://canalvoleibrasil.cbv.com.br/plans?event_id=13502&plan=91',
+    href: 'https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=/plans?event_id=13502&plan=106',
     prefixPrice: '12 x',
     price: 'R$ 7,90',
     priceObs: '* Igual a R$ 94,80/ano',
@@ -27,7 +38,7 @@ const tiers = [
     id: 'single',
     name: 'Novo Canal Vôlei Brasil',
     description: 'JOGO AVULSO - somente o jogo selecionado',
-    href: 'https://canalvoleibrasil.cbv.com.br/plans?event_id=13502&plan=91',
+    href: 'https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=/plans?event_id=13502',
     price: 'R$ 22,90',
     mostPopular: false,
     textButton: 'Comprar 1 jogo',
@@ -35,6 +46,14 @@ const tiers = [
 ]
 
 export function Pricing() {
+  const {
+    user,
+    shortToken,
+    setIsSubscribeNow,
+    handleWelcomeMessage,
+    handleOpenModal,
+  } = useContext(UserContext)
+
   return (
     <div className="relative py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -48,7 +67,7 @@ export function Pricing() {
         </p>
 
         <div className="relative mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-auto lg:max-w-5xl lg:grid-cols-3">
-          {tiers.map((tier) => (
+          {tiers.map((tier, idx) => (
             <div
               key={tier.id}
               className={classNames(
@@ -74,26 +93,37 @@ export function Pricing() {
                 ) : null}
               </div>
               <p className="mt-6 flex items-baseline gap-x-1">
-                {/* {tier.prefixPrice && (
-                  <span className="text-xs font-medium">
-                    {tier.prefixPrice}
-                  </span>
-                )} */}
-
                 <span className="text-4xl font-extrabold tracking-tight text-white">
                   {tier.price}
                 </span>
               </p>
               <span className="mt-4 font-medium">{tier.priceObs}</span>
-              <Link
-                href={tier.href}
-                aria-describedby={tier.id}
-                className={classNames(
-                  'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-medium-blue to-medium-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
-                )}
-              >
-                {tier.textButton}
-              </Link>
+
+              {user.id ? (
+                <Link
+                  href={setShortToken(shortToken, idx)}
+                  aria-describedby={tier.id}
+                  className={classNames(
+                    'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-medium-blue to-medium-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+                  )}
+                >
+                  {tier.textButton}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    setIsSubscribeNow(true)
+                    handleWelcomeMessage('assine agora')
+                    handleOpenModal()
+                  }}
+                  aria-describedby={tier.id}
+                  className={classNames(
+                    'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-medium-blue to-medium-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+                  )}
+                >
+                  {tier.textButton}
+                </button>
+              )}
             </div>
           ))}
         </div>

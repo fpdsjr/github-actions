@@ -1,9 +1,12 @@
+import { useContext } from 'react'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
 import '@splidejs/react-splide/css'
 
+import { UserContext } from '@/contexts/UserContext'
 import { IEvent } from '@/interfaces'
 import { CourtCard } from './CourtCard'
+import Link from 'next/link'
 
 interface CourtEventsProps {
   title: string
@@ -11,6 +14,14 @@ interface CourtEventsProps {
 }
 
 export function CourtEvents({ title, events }: CourtEventsProps) {
+  const {
+    shortToken,
+    user,
+    setIsSubscribeNow,
+    handleOpenModal,
+    handleWelcomeMessage,
+  } = useContext(UserContext)
+
   return (
     <section className="relative mb-4 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
       <h2 className="text-2xl font-bebas tracking-wider px-10 font-semibold mb-2">
@@ -48,7 +59,24 @@ export function CourtEvents({ title, events }: CourtEventsProps) {
             )
             .map((event) => (
               <SplideSlide key={event?.id} className="rounded-lg">
-                <CourtCard match={event} />
+                {user.id ? (
+                  <Link
+                    href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`}
+                  >
+                    <CourtCard match={event} />
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsSubscribeNow(true)
+                      handleWelcomeMessage('assine agora')
+                      handleOpenModal()
+                    }}
+                    className="w-full"
+                  >
+                    <CourtCard match={event} />
+                  </button>
+                )}
               </SplideSlide>
             ))}
         </SplideTrack>

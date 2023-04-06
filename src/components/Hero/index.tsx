@@ -40,8 +40,13 @@ export function Hero() {
 
   const { firstTwoEvents } = useGetEvents(videos?.upcomming, teams)
 
-  const { handleOpenModal, user, setIsSubscribeNow, handleWelcomeMessage } =
-    useContext(UserContext)
+  const {
+    handleOpenModal,
+    shortToken,
+    user,
+    setIsSubscribeNow,
+    handleWelcomeMessage,
+  } = useContext(UserContext)
 
   return (
     <section className="relative lg:after:absolute lg:after:inset-0 lg:after:z-30 lg:after:bg-gradient-to-t lg:after:from-[rgb(3,14,65)10%] lg:after:via-[rgba(0,0,0,0)30%] lg:after:to-[rgba(4,0,61,0)20%] lg:h-screen">
@@ -142,7 +147,7 @@ export function Hero() {
           <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
             {user.id ? (
               <Link
-                href="https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil"
+                href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`}
                 className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
               >
                 Quero assistir vôlei o ano todo!
