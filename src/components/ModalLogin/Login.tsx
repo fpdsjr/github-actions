@@ -30,6 +30,7 @@ export function Login() {
     handleCloseModal,
     handleForgotPassword,
     isSubscribeNow,
+    shortToken,
   } = useContext(UserContext)
 
   const [status, setStatus] = useState<number>()
@@ -63,8 +64,9 @@ export function Login() {
       Cookies.set('tvnsports_session', data.ticket)
       handleUserToken(data.ticket)
       isSubscribeNow &&
+        shortToken &&
         router.push(
-          'https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil',
+          `https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=%2Fvideos%2Fcompre-aqui-superliga-de-volei-2022-2023%2F%3Findic%3Dcanal_volei_brasil`,
         )
     },
     onError: (e: any) => {

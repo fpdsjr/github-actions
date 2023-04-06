@@ -62,7 +62,7 @@ const genders = [
 
 export function Register() {
   const router = useRouter()
-  const { handleUserToken, handleCloseModal, isSubscribeNow } =
+  const { handleUserToken, handleCloseModal, isSubscribeNow, shortToken } =
     useContext(UserContext)
 
   const [message, setMessage] = useState('')
@@ -104,8 +104,9 @@ export function Register() {
       Cookies.set('tvnsports_session', data.ticket)
       handleUserToken(data.ticket)
       isSubscribeNow &&
+        shortToken &&
         router.push(
-          'https://canalvoleibrasil.cbv.com.br/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil',
+          `https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=%2Fvideos%2Fcompre-aqui-superliga-de-volei-2022-2023%2F%3Findic%3Dcanal_volei_brasil`,
         )
     },
     onError: (e: any) => {
