@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 6s linear infinite',
+      },
       colors: {
         'dark-blue': '#030e41',
         'medium-blue': '#025BFE',
