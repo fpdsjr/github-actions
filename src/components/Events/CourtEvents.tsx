@@ -7,6 +7,7 @@ import { UserContext } from '@/contexts/UserContext'
 import { IEvent } from '@/interfaces'
 import { CourtCard } from './CourtCard'
 import Link from 'next/link'
+import { useVerifyUserIsLogged } from '@/hooks/useStates'
 
 interface CourtEventsProps {
   title: string
@@ -21,6 +22,8 @@ export function CourtEvents({ title, events }: CourtEventsProps) {
     handleOpenModal,
     handleWelcomeMessage,
   } = useContext(UserContext)
+
+  const { data: isUserLogged } = useVerifyUserIsLogged()
 
   return (
     <section className="relative mb-4 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
@@ -61,7 +64,11 @@ export function CourtEvents({ title, events }: CourtEventsProps) {
               <SplideSlide key={event?.id} className="rounded-lg">
                 {user.id ? (
                   <Link
-                    href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`}
+                    href={
+                      isUserLogged
+                        ? `videos/${event.slug}`
+                        : `/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`
+                    }
                   >
                     <CourtCard match={event} />
                   </Link>

@@ -9,19 +9,19 @@ const navigation = {
   main: [
     {
       name: 'Agora no CVB',
-      href: 'https://canalvoleibrasil.cbv.com.br/categories/upcoming',
+      href: '/categories/upcoming',
     },
     {
       name: 'Em breve',
-      href: 'https://canalvoleibrasil.cbv.com.br/categories/upcoming',
+      href: '/categories/upcoming',
     },
     {
       name: 'Veja de novo',
-      href: 'https://canalvoleibrasil.cbv.com.br/categories/anteriores-cbv',
+      href: '/categories/anteriores-cbv',
     },
     {
       name: 'Melhores momentos',
-      href: 'https://canalvoleibrasil.cbv.com.br/categories/melhores-momentos-cbv',
+      href: '/categories/melhores-momentos-cbv',
     },
     {
       name: 'Ajuda',

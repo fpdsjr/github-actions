@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
 import { UserContext } from '@/contexts/UserContext'
-import { useChannel } from '@/hooks/useStates'
+import { useChannel, useVerifyUserIsLogged } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
 import { EChannel } from '@/dictionary'
@@ -34,6 +34,8 @@ export function Live() {
     handleWelcomeMessage,
     handleOpenModal,
   } = useContext(UserContext)
+
+  const { data: isUserLogged } = useVerifyUserIsLogged()
 
   return (
     <section className="relative flex flex-col mb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
@@ -78,7 +80,11 @@ export function Live() {
 
               {user.id ? (
                 <Link
-                  href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${match.slug}`}
+                  href={
+                    isUserLogged
+                      ? `/videos/${match.slug}`
+                      : `/user/token?ct=${shortToken}&redirect=/videos/${match.slug}`
+                  }
                 >
                   {match?.type === 'beach' && <BeachCard match={match} />}
                   {match?.type === 'court' && <CourtCard match={match} />}

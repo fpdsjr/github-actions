@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { UserContext } from '@/contexts/UserContext'
 import { classNames } from '@/utils'
+import { useVerifyUserIsLogged } from '@/hooks/useStates'
 
 const setShortToken = (token: string, idx: number) => {
   const concatena =
@@ -18,7 +19,8 @@ const tiers = [
     name: 'Novo Canal Vôlei Brasil',
     description: 'ANUAL - em até 12x sem juros',
     tag: 'Economize 4 meses',
-    href: 'https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=%2Fplans%3Fevent_id%3D13502%26plan%3D106',
+    href: '/user/token?ct=&redirect=%2Fplans%3Fevent_id%3D13502%26plan%3D106',
+    hrefUserLogged: '/plans?event_id=13502&plan=106',
     prefixPrice: '12 x',
     price: 'R$ 7,90',
     priceObs: '* Igual a R$ 94,80/ano',
@@ -29,7 +31,8 @@ const tiers = [
     id: 'monthly',
     name: 'Novo Canal Vôlei Brasil',
     description: 'MENSAL - cancele quando quiser',
-    href: `https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=%2Fplans%3Fevent_id%3D13502%26plan%3D105`,
+    href: `/user/token?ct=&redirect=%2Fplans%3Fevent_id%3D13502%26plan%3D105`,
+    hrefUserLogged: '/plans?event_id=13502&plan=105',
     price: 'R$ 12,90',
     mostPopular: false,
     textButton: 'Assinar mensal',
@@ -38,7 +41,7 @@ const tiers = [
   //   id: 'single',
   //   name: 'Novo Canal Vôlei Brasil',
   //   description: 'JOGO AVULSO - somente o jogo selecionado',
-  //   href: 'https://canalvoleibrasil.cbv.com.br/user/token?ct=&redirect=/plans?event_id=13502',
+  //   href: '/user/token?ct=&redirect=/plans?event_id=13502',
   //   price: 'R$ 22,90',
   //   mostPopular: false,
   //   textButton: 'Comprar 1 jogo',
@@ -53,6 +56,8 @@ export function Pricing() {
     handleWelcomeMessage,
     handleOpenModal,
   } = useContext(UserContext)
+
+  const { data: isUserLogged } = useVerifyUserIsLogged()
 
   return (
     <div className="relative py-24 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue sm:py-32">
@@ -101,7 +106,11 @@ export function Pricing() {
 
               {user.id ? (
                 <Link
-                  href={setShortToken(shortToken, idx)}
+                  href={
+                    isUserLogged
+                      ? tier.hrefUserLogged
+                      : setShortToken(shortToken, idx)
+                  }
                   aria-describedby={tier.id}
                   className={classNames(
                     'mt-6 block w-full rounded-full py-2 px-3 uppercase text-center font-bold leading-6 bg-gradient-to-r bg-[400%,400%] bg-[99%_50%] from-medium-blue to-medium-blue/60 text-white border-2 border-transparent shadow-sm hover:border-light-blue hover:transition-all hover:duration-500 hover:bg-[1%_50%] hover:from-dark-blue hover:to-light-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',

@@ -41,7 +41,6 @@ export function Hero() {
   const { firstTwoEvents } = useGetEvents(videos?.upcomming, teams)
 
   const { data: isUserLogged } = useVerifyUserIsLogged()
-  console.log('isUserLogged', isUserLogged)
 
   const {
     handleOpenModal,
@@ -89,7 +88,11 @@ export function Hero() {
         <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
           {user.id ? (
             <Link
-              href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`}
+              href={
+                isUserLogged
+                  ? '/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil'
+                  : `/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`
+              }
               className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
             >
               Quero assistir vôlei o ano todo!
@@ -150,7 +153,11 @@ export function Hero() {
           <div className="px-4 flex justify-center md:px-6 lg:px-0 lg:justify-center">
             {user.id ? (
               <Link
-                href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`}
+                href={
+                  isUserLogged
+                    ? '/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil'
+                    : `/user/token?ct=${shortToken}&redirect=/videos/compre-aqui-superliga-de-volei-2022-2023/?indic=canal_volei_brasil`
+                }
                 className="uppercase bg-medium-blue text-white text-center font-paralucentDemiBoldItalic tracking-wide font-bold text-base px-4 py-2 rounded-3xl transition hover:brightness-125 hover:scale-[1.02] lg:px-10 lg:text-2xl"
               >
                 Quero assistir vôlei o ano todo!

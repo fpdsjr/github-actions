@@ -5,6 +5,7 @@ import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
 
 import { UserContext } from '@/contexts/UserContext'
+import { useVerifyUserIsLogged } from '@/hooks/useStates'
 import { IEvent } from '@/interfaces'
 import { BeachCard } from './BeachCard'
 
@@ -21,6 +22,8 @@ export function BeachEvents({ title, events }: BeachEventsProps) {
     handleOpenModal,
     handleWelcomeMessage,
   } = useContext(UserContext)
+
+  const { data: isUserLogged } = useVerifyUserIsLogged()
 
   return (
     <section className="relative mb-4 flex flex-col bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
@@ -61,7 +64,11 @@ export function BeachEvents({ title, events }: BeachEventsProps) {
               <SplideSlide key={event?.id} className="rounded-lg">
                 {user.id ? (
                   <Link
-                    href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`}
+                    href={
+                      isUserLogged
+                        ? `/videos/${event.slug}`
+                        : `/user/token?ct=${shortToken}&redirect=/videos/${event.slug}`
+                    }
                   >
                     <BeachCard match={event} />
                   </Link>
