@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { EffectFade, Navigation, Autoplay } from 'swiper'
 
 import { UserContext } from '@/contexts/UserContext'
-import { useChannel } from '@/hooks/useStates'
+import { useChannel, useVerifyUserIsLogged } from '@/hooks/useStates'
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
 import { EChannel } from '@/dictionary'
@@ -39,6 +39,9 @@ export function Hero() {
   const { data: videos, isLoading } = useChannel(EChannel.VoleiBrasil)
 
   const { firstTwoEvents } = useGetEvents(videos?.upcomming, teams)
+
+  const { data: isUserLogged } = useVerifyUserIsLogged()
+  console.log('isUserLogged', isUserLogged)
 
   const {
     handleOpenModal,
