@@ -1,15 +1,17 @@
+import Link from 'next/link'
+import { useContext } from 'react'
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
 
+import { UserContext } from '@/contexts/UserContext'
 import { useChannel } from '@/hooks/useStates'
-
-import '@splidejs/react-splide/css'
-
 import { useGetEvents } from '@/hooks/useGetEvents'
 import { teams } from '@/data'
 import { EChannel } from '@/dictionary'
 import { IEvent } from '@/interfaces'
 import { BeachCard } from './BeachCard'
 import { CourtCard } from './CourtCard'
+
+import '@splidejs/react-splide/css'
 
 export function Live() {
   const { data: videos } = useChannel(EChannel.VoleiBrasil)
@@ -24,6 +26,14 @@ export function Live() {
   } else if (getBeachEvents?.length) {
     lives = getBeachEvents
   }
+
+  const {
+    user,
+    shortToken,
+    setIsSubscribeNow,
+    handleWelcomeMessage,
+    handleOpenModal,
+  } = useContext(UserContext)
 
   return (
     <section className="relative flex flex-col mb-4 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900 via-dark-blue to-dark-blue">
@@ -65,8 +75,27 @@ export function Live() {
                 </span>
                 <span className="font-medium">Ao vivo</span>
               </div>
-              {match?.type === 'beach' && <BeachCard match={match} />}
-              {match?.type === 'court' && <CourtCard match={match} />}
+
+              {user.id ? (
+                <Link
+                  href={`https://canalvoleibrasil.cbv.com.br/user/token?ct=${shortToken}&redirect=/videos/${match.slug}`}
+                >
+                  {match?.type === 'beach' && <BeachCard match={match} />}
+                  {match?.type === 'court' && <CourtCard match={match} />}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    setIsSubscribeNow(true)
+                    handleWelcomeMessage('assine agora')
+                    handleOpenModal()
+                  }}
+                  className="w-full"
+                >
+                  {match?.type === 'beach' && <BeachCard match={match} />}
+                  {match?.type === 'court' && <CourtCard match={match} />}
+                </button>
+              )}
             </SplideSlide>
           ))}
         </SplideTrack>
