@@ -1,0 +1,23 @@
+name: Build ARM64
+
+on:
+  push:
+    branches:
+      - main  # substitua pela branch desejada
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # usar a última versão do runner hospedado baseado em Ubuntu
+
+    steps:
+    - name: Checkout código-fonte
+      uses: actions/checkout@v2
+
+    - name: Set up QEMU
+      run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
+    - name: Build Docker
+      run: docker build --platform linux/arm64 -t nome_da_imagem:tag .
+
+    - name: Verificar arquiteturas da imagem
+      run: docker manifest inspect nome_da_imagem:tag

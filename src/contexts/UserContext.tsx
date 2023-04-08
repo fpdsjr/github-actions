@@ -97,11 +97,15 @@ export function UserProvider({ children }: UserProviderProps) {
   useEffect(() => {
     const fetchShortToken = async () => {
       if (userToken && userToken !== undefined) {
-        const { data } = await api.post('/tokens', {}, {
-          headers: {
-            ticket: userToken,
+        const { data } = await api.post(
+          '/tokens',
+          {},
+          {
+            headers: {
+              ticket: userToken,
+            },
           },
-        })
+        )
         setShortToken(data.token)
       }
     }
